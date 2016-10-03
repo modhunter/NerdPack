@@ -56,7 +56,7 @@ function NeP.Interface:BuildGUI(eval)
 	temp.content = self:NewFrame({
 		color = {0,0,0,0},
 		size = {temp:GetWidth(), temp:GetHeight()-temp.title:GetHeight()},
-		loc = {'TOP', 0, -temp.title:GetHeight()},
+		loc = {'TOP', 0, -22},
 		parent = temp,
 	})
 	temp:SetScript("OnUpdate", function(self)

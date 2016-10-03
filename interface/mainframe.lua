@@ -22,6 +22,7 @@ local function BuildMenu()
 			text = Name,
 			checked = (last == Name),
 			func = function()
+				NeP.Interface:ResetToggles()
 				NeP.Core:Print('Loaded: '..Name)
 				NeP.CombatRoutines:Set(Spec, Name)
 			end

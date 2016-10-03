@@ -71,5 +71,13 @@ end
 
 function NeP.Interface:RefreshToggles()
 	local Width = tcount*(ButtonsSize+ButtonsPadding)-ButtonsPadding
-	mainframe:SetSize(Width, ButtonsSize+20)
+	mainframe:SetSize(Width, ButtonsSize+24)
+end
+
+function NeP.Interface:ResetToggles()
+	tcount = 0
+	for k,v in pairs(Toggles) do
+		Toggles[k]:Hide()
+	end
+	self:DefaultToggles()
 end
