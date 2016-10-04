@@ -10,27 +10,35 @@ local menuFrame = CreateFrame("Frame", "ExampleMenuFrame", NeP.Interface.MainFra
 menuFrame:SetPoint("BOTTOMLEFT", NeP.Interface.MainFrame, "BOTTOMLEFT", 0, 0)
 menuFrame:Hide()
 
-local function BuildMenu()
-	local result = {}
-	table.insert(result, {text = logo..'['..NeP.Name..' |rv:'..NeP.Version..']', isTitle = 1, notCheckable = 1})
-	local Spec = GetSpecializationInfo(GetSpecialization())
-	local CrList = NeP.CombatRoutines:GetList(Spec)
-	local last = NeP.Config:Read('SELECTED', Spec, 'NONE')
-	for i=1, #CrList do
-		local Name = CrList[i]
-		table.insert(result, {
-			text = Name,
-			checked = (last == Name),
-			func = function()
-				NeP.Interface:ResetToggles()
-				NeP.Core:Print('Loaded: '..Name)
-				NeP.CombatRoutines:Set(Spec, Name)
-			end
-		})
-	end
-	return result
+local DropMenu = {
+	{text = logo..'['..NeP.Name..' |rv:'..NeP.Version..']', isTitle = 1, notCheckable = 1},
+	{text = "Combat Routines:", hasArrow = true, menuList = {}}
+}
+
+function NeP.Interface:ResetCRs()
+	DropMenu[2].menuList = {}
+end
+
+function NeP.Interface:AddCR(Spec, Name, checked)
+	table.insert(DropMenu[2].menuList, {
+		text = Name,
+		checked = checked,
+		func = function()
+			NeP.Interface:ResetToggles()
+			NeP.Core:Print('Loaded: '..Name)
+			NeP.CombatRoutines:Set(Spec, Name)
+		end
+	})
 end
 
 function NeP.Interface:DropMenu()
-	EasyMenu(BuildMenu(), menuFrame, menuFrame, 0, 0, "MENU")
+	EasyMenu(DropMenu, menuFrame, menuFrame, 0, 0, "MENU")
+end
+
+function NeP.Interface:Add(name, func)
+	table.insert(DropMenu, {
+		text = tostring(name),
+		func = func,
+		notCheckable = 1
+	})
 end

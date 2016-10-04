@@ -1,10 +1,25 @@
+local function BuildCRs(Spec, Last)
+	local CrList = NeP.CombatRoutines:GetList(Spec)
+	for i=1, #CrList do
+		local Name = CrList[i]
+		NeP.Interface:AddCR(Spec, Name, (Name == Last))
+	end
+end
+
 NeP.Listener:Add("NeP_Config", "PLAYER_LOGIN", function(addon)
 	local Spec = GetSpecializationInfo(GetSpecialization())
-	NeP.CombatRoutines:Add(Spec, 'NONE', {}, {})
-	local last = NeP.Config:Read('SELECTED', Spec, 'NONE')
+	local _, englishClass, classIndex  = UnitClass('player')
+	local a, b = englishClass:sub(1, 1):upper(), englishClass:sub(2):lower()
+	local classCR = '[NeP] '..a..b..' - Basic'
+	local last = NeP.Config:Read('SELECTED', Spec, classCR)
+	
+	NeP.Interface:ResetCRs()
+	BuildCRs(Spec, last)
+
 	NeP.CombatRoutines:Set(Spec, last)
+	NeP.Spells:Filter()
 end)
 
-NeP.Listener:Add("NeP_Spells", "PLAYER_LOGIN", function(...)
-	 NeP.Spells:Filter()
+NeP.Listener:Add("NeP_Spells", "T", function(...)
+	
 end)
