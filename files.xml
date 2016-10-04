@@ -11,12 +11,10 @@
 	
 	<!-- Core -->
 	<Script file="NerdPack.lua" />
-
 	<Script file="Tables\class.lua" />
 	<Script file="Tables\spells.lua" />
 	<Script file="Tables\castable_mounts.lua" />
 	<Script file="Tables\blacklisted_auras.lua" />
-
 	<Script file="System\core.lua" />
 	<Script file="System\lexer.lua" />
 	<Script file="System\conditions.lua" />
@@ -28,17 +26,9 @@
 	<Script file="Interface\mainframe.lua" />
 	<Script file="Interface\toggles.lua" />
 	<Script file="Interface\default_toggles.lua" />
-
-	<Script file="Conditions\general.lua" />
-	<Script file="Conditions\units.lua" />
-	<Script file="Conditions\buffs.lua" />
-	<Script file="Conditions\keybinds.lua" />
-	<Script file="Conditions\class.lua" />
-	<Script file="Conditions\states.lua" />
-	<Script file="Conditions\deprecated.lua" />
-
+	<Include file="Conditions\files.xml" />
 	<Script file="System\parser.lua" />
-
 	<Script file="listeners.lua" />
+	<Include file="Rotations\files.xml" />
 	
 </Ui>
