@@ -13,15 +13,9 @@ local tokens = {
 	{ 'character', {'^[@,:\'%(%)%[%]%.#%$~`\\\";?%s]'} },
 }
 
-local function FindPatern(Strg, token, patterns)
-	
-end
-
-function NeP.Lexer:Tokenize(Strg)
-	local list = {}
+function NeP.Lexer:Tokenize(Strg, list)
 	local index = 1
-	local length = #Strg + 1
-	while index < length do
+	while index < #Strg+1 do
 		for i = 1, #tokens do
 			local token, patterns = tokens[i][1], tokens[i][2]
 			for i = 1, #patterns do
@@ -38,11 +32,12 @@ function NeP.Lexer:Tokenize(Strg)
 			end
 		end
 	end
-	return list
 end
 
+--/run NeP.Lexer:STRING('player.buff(Soul Fragments).count<4&player.incdmg(4)')
 function NeP.Lexer:STRING(eval)
-	local temp = self:Tokenize(eval)
+	local list = {}
+	self:Tokenize(eval, list)
 end
 
 function NeP.Lexer:TABLE(eval)
