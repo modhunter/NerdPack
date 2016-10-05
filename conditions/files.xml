@@ -1,12 +1,12 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-	<Script file="Conditions\general.lua" />
-	<Script file="Conditions\units.lua" />
-	<Script file="Conditions\buffs.lua" />
-	<Script file="Conditions\keybinds.lua" />
-	<Script file="Conditions\class.lua" />
-	<Script file="Conditions\states.lua" />
-	<Script file="Conditions\deprecated.lua" />
+	<Script file="conditions\general.lua" />
+	<Script file="conditions\units.lua" />
+	<Script file="conditions\buffs.lua" />
+	<Script file="conditions\keybinds.lua" />
+	<Script file="conditions\class.lua" />
+	<Script file="conditions\states.lua" />
+	<Script file="conditions\deprecated.lua" />
 	
 </Ui>
