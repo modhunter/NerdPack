@@ -13,8 +13,8 @@ function NeP.CombatRoutines:Add(SpecID, Name, InCombat, OutCombat, ExeOnLoad)
 		end
 		CRs[SpecID][Name] = {}
 		CRs[SpecID][Name].Exe = ExeOnLoad
-		CRs[SpecID][Name][true] = InCombat
-		CRs[SpecID][Name][false] = OutCombat
+		CRs[SpecID][Name][true] = NeP.Compiler:Iterate(InCombat)
+		CRs[SpecID][Name][false] = NeP.Compiler:Iterate(OutCombat)
 	end
 end
 
@@ -37,11 +37,11 @@ function NeP.CombatRoutines:GetList(Spec)
 	local result = {}
 	local classIndex = select(3, UnitClass('player'))
 	if CRs[Spec] then
-		for k,v in pairs(CRs[Spec]) do
+		for k in pairs(CRs[Spec]) do
 			result[#result+1] = k
 		end
 	end
-	for k,v in pairs(CRs[classIndex]) do
+	for k in pairs(CRs[classIndex]) do
 		result[#result+1] = k
 	end
 	return result

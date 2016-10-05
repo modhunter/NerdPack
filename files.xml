@@ -16,7 +16,7 @@
 	<Script file="tables\castable_mounts.lua" />
 	<Script file="tables\blacklisted_auras.lua" />
 	<Script file="system\core.lua" />
-	<Script file="system\lexer.lua" />
+	<Script file="system\dsl.lua" />
 	<Script file="system\conditions.lua" />
 	<Script file="system\CRs.lua" />
 	<Script file="system\lib.lua" />
@@ -30,5 +30,6 @@
 	<Script file="system\parser.lua" />
 	<Script file="listeners.lua" />
 	<Include file="rotations\files.xml" />
+	<Include file="protected\files.xml" />
 
 </Ui>

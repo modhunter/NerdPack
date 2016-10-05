@@ -33,7 +33,7 @@ local Immune = {
 }
 
 NeP.DSL:RegisterConditon('state.purge', function(target, spell)
-	local spell = GetSpellID(GetSpellName(spell))
+	spell = GetSpellID(GetSpellName(spell))
 	return LibDispellable:CanDispelWith(target, spell) 
 end)
 
@@ -42,7 +42,7 @@ NeP.DSL:RegisterConditon('state', function(target, arg)
 	return match and tlp:Scan_Debuff(target, match)
 end)
 
-NeP.DSL:RegisterConditon('immune', function(target, spell)
+NeP.DSL:RegisterConditon('immune', function(target, arg)
 	local match = Immune[tostring(arg)]
 	return match and tlp:Scan_Debuff(target, match)
 end)

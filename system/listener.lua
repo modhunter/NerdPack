@@ -18,7 +18,7 @@ function NeP.Listener:Add(name, event, callback)
 	listeners[event][name] = callback
 end
 
-function NeP.Listener:Remove(name, event, callback)
+function NeP.Listener:Remove(name, event)
 	if listeners[event] then
 		listeners[event][name] = nil
 	end

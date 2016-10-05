@@ -21,7 +21,7 @@ function DSL:Get(Strg)
 end
 
 function DSL:RegisterConditon(name, condition, overwrite)
-	local name = name:lower()
+	name = name:lower()
 	if not conditions[name] or overwrite then
 		conditions[name] = condition
 	end

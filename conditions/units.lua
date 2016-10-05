@@ -35,7 +35,7 @@ NeP.DSL:RegisterConditon('boss', function (target)
 	return false
 end)
 
-NeP.DSL:RegisterConditon('elite', function (target, spell)
+NeP.DSL:RegisterConditon('elite', function (target)
 	local classification = UnitClassification(target)
 	if UnitClsf[classification] then
 		return UnitClsf[classification] >= 2
@@ -52,8 +52,7 @@ end)
 
 NeP.DSL:RegisterConditon("threat", function(target)
 	if UnitThreatSituation("player", target) then
-		local isTanking, status, scaledPercent, rawPercent, threatValue = UnitDetailedThreatSituation("player", target)
-		return scaledPercent
+		return select(3, UnitDetailedThreatSituation("player", target))
 	end
 	return 0
 end)
@@ -102,15 +101,15 @@ NeP.DSL:RegisterConditon('dead', function (target)
 	return UnitIsDeadOrGhost(target)
 end)
 
-NeP.DSL:RegisterConditon("alive", function(target, spell)
+NeP.DSL:RegisterConditon("alive", function(target)
 	return (UnitExists(target) and UnitHealth(target) > 0)
 end)
 
-NeP.DSL:RegisterConditon("behind", function(target, spell)
+NeP.DSL:RegisterConditon("behind", function(target)
 	return not NeP.Engine.Infront('player', target)
 end)
 
-NeP.DSL:RegisterConditon("infront", function(target, spell)
+NeP.DSL:RegisterConditon("infront", function(target)
 	return NeP.Engine.Infront('player', target)
 end)
 
@@ -179,11 +178,11 @@ NeP.DSL:RegisterConditon("movingfor", function(target)
 	end
 end)
 
-NeP.DSL:RegisterConditon("friend", function(target, spell)
+NeP.DSL:RegisterConditon("friend", function(target)
 	return UnitExists(target) and not UnitCanAttack("player", target)
 end)
 
-NeP.DSL:RegisterConditon("enemy", function(target, spell)
+NeP.DSL:RegisterConditon("enemy", function(target)
 	return UnitExists(target) and UnitCanAttack("player", target)
 end)
 
@@ -195,16 +194,16 @@ NeP.DSL:RegisterConditon("range", function(target)
 	return NeP.DSL.Conditions["distance"](target)
 end)
 
-NeP.DSL:RegisterConditon("level", function(target, range)
+NeP.DSL:RegisterConditon("level", function(target)
 	return UnitLevel(target)
 end)
 
-NeP.DSL:RegisterConditon("combat", function(target, range)
+NeP.DSL:RegisterConditon("combat", function(target)
 	return UnitAffectingCombat(target)
 end)
 
 NeP.DSL:RegisterConditon("role", function(target, role)
-	local role = role:upper()
+	role = role:upper()
 	local damageAliases = { "DAMAGE", "DPS", "DEEPS" }
 	local targetRole = UnitGroupRolesAssigned(target)
 	if targetRole == role then return true
@@ -250,9 +249,8 @@ NeP.DSL:RegisterConditon("power.regen", function(target)
 	return select(2, GetPowerRegen(target))
 end)
 
-NeP.DSL:RegisterConditon("casttime", function(target, spell)
-	local name, rank, icon, cast_time, min_range, max_range = GetSpellInfo(spell)
-	return cast_time
+NeP.DSL:RegisterConditon("casttime", function(_, spell)
+	return select(3, GetSpellInfo(spell))
 end)
 
 ------------------------------------------ PLAYER ----------------------------------------
@@ -295,11 +293,11 @@ NeP.DSL:RegisterConditon("ttd", function(target)
 	return NeP.DSL.Conditions["deathin"](target)
 end)
 
-NeP.DSL:RegisterConditon("charmed", function(target, _)
+NeP.DSL:RegisterConditon("charmed", function(target)
 	return UnitIsCharmed(target)
 end)
 
-NeP.DSL:RegisterConditon("talent", function(target, args)
+NeP.DSL:RegisterConditon("talent", function(_, args)
 	local row, col = strsplit(",", args, 2)
 	return hasTalent(tonumber(row), tonumber(col))
 end)
@@ -325,11 +323,11 @@ NeP.DSL:RegisterConditon("glyph", function()
 	return false
 end)
 
-NeP.DSL:RegisterConditon('twohand', function(target)
+NeP.DSL:RegisterConditon('twohand', function()
 	return IsEquippedItemType("Two-Hand")
 end)
 
-NeP.DSL:RegisterConditon('onehand', function(target)
+NeP.DSL:RegisterConditon('onehand', function()
 	return IsEquippedItemType("One-Hand")
 end)
 

@@ -2288,7 +2288,7 @@ function NeP.Spells:Filter()
 	SpellID = nil
 end
 
-function NeP.Spells:ConvertSpell(spell)
+function NeP.Spells:Convert(spell)
 	if not spell then return end
 	if spell:find('%d') then
 		spell = GetSpellInfo(spell)

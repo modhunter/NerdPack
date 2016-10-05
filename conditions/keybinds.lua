@@ -18,6 +18,6 @@ local KEYBINDS = {
 }
 
 NeP.DSL:RegisterConditon("keybind", function(_, Arg)
-	local Arg = Arg:lower()
+	Arg = Arg:lower()
 	return KEYBINDS[Arg] and KEYBINDS[Arg]() and not GetCurrentKeyBoardFocus()
 end)

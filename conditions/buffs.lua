@@ -8,7 +8,7 @@
 ]]
 
 local heroismBuffs = { 32182, 90355, 80353, 2825, 146555 }
-NeP.DSL:RegisterConditon("hashero", function(target, spell)
+NeP.DSL:RegisterConditon("hashero", function()
 	for i = 1, #heroismBuffs do
 		local SpellName = GetSpellName(heroismBuffs[i])
 		local buff = NeP.APIs['UnitBuff']('player', SpellName, "any")
@@ -27,7 +27,7 @@ NeP.DSL:RegisterConditon("buff", function(target, spell)
 end)
 
 NeP.DSL:RegisterConditon("buff.any", function(target, spell)
-	local buff,_,_,caster = NeP.APIs['UnitBuff'](target, spell, "any")
+	local buff = NeP.APIs['UnitBuff'](target, spell, "any")
 	if not not buff then
 		return true
 	end
@@ -60,7 +60,7 @@ NeP.DSL:RegisterConditon("debuff", function(target, spell)
 end)
 
 NeP.DSL:RegisterConditon("debuff.any", function(target, spell)
-	local debuff,_,_,caster = NeP.APIs['UnitDebuff'](target, spell, "any")
+	local debuff = NeP.APIs['UnitDebuff'](target, spell, "any")
 	if not not debuff then
 		return true
 	end
