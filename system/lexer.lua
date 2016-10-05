@@ -1,17 +1,24 @@
 NeP.Lexer = {}
 
-local tokens = {
+local token_patterns = {
+	{ 'space', '^%s+' },
+	{ 'library', '^@' },
 	{ 'string', { '^\'.-\'', '^".-"' } },
 	{ 'logic', { '^and', '^or', '^&&', '^||', '^&', '^|' } },
-	{ 'constant', { '^true', '^false', '^nil', '^null' } },
-	{ 'comparator', { '^>=', '^=>',  '^>', '^<=', '^=<', '^<', '^==', '^!=', '^~=', '^=' } },
-	{ 'not', { '^not', '^!' } },
-	{ 'identifier', {'^[_%a][_%w]*'} },
-	{ 'number', { '^%d+%.?%d*', '^%d+%.?%d*', '^%.%d+' } },
-	{ 'operator', {'^[%*/%-%+%%^]'} },
-	{ 'nest', {'^[{}]'}},
-	{ 'character', {'^[@,:\'%(%)%[%]%.#%$~`\\\";?%s]'} },
-}
+	{ 'not', { '^not%s', '^not$', '^!' } },
+	{ 'constant', { '^true', '^false', '^nil' } },
+	{ 'identifier', '^[_%a][_%w]*' },
+	{ 'comma', '^,' },
+	{ 'character', '^[:\']' },
+	{ 'number', { '^[%+%-]?%d+%.?%d*', '^%d+%.?%d*', '^%.%d+' } },
+	{ 'openParen', { '^%(', '^{' } },
+	{ 'closeParen', { '^%)', '^}' } },
+	{ 'openBracket', '^%[' },
+	{ 'closeBracket', '^%]' },
+	{ 'math', { '^%*', '^/', '^%-', '^%+', '^%%' } },	
+	{ 'comparator', { '^>=', '^=>',  '^>', '^<=', '^=<', '^<', '^==', '^=', '^!=', '~=' } },
+	{ 'period', '^%.' }		
+ }
 
 function NeP.Lexer:Tokenize(Strg, list)
 	local index = 1
