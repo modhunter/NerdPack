@@ -11,24 +11,24 @@
 	
 	<!-- Core -->
 	<Script file="NerdPack.lua" />
-	<Script file="Tables\class.lua" />
-	<Script file="Tables\spells.lua" />
-	<Script file="Tables\castable_mounts.lua" />
-	<Script file="Tables\blacklisted_auras.lua" />
-	<Script file="System\core.lua" />
-	<Script file="System\lexer.lua" />
-	<Script file="System\conditions.lua" />
-	<Script file="System\CRs.lua" />
-	<Script file="System\lib.lua" />
-	<Script file="System\listener.lua" />
-	<Script file="System\config.lua" />
-	<Script file="Interface\tools.lua" />
-	<Script file="Interface\mainframe.lua" />
-	<Script file="Interface\toggles.lua" />
-	<Script file="Interface\default_toggles.lua" />
-	<Include file="Conditions\files.xml" />
-	<Script file="System\parser.lua" />
+	<Script file="tables\class.lua" />
+	<Script file="tables\spells.lua" />
+	<Script file="tables\castable_mounts.lua" />
+	<Script file="tables\blacklisted_auras.lua" />
+	<Script file="system\core.lua" />
+	<Script file="system\lexer.lua" />
+	<Script file="system\conditions.lua" />
+	<Script file="system\CRs.lua" />
+	<Script file="system\lib.lua" />
+	<Script file="system\listener.lua" />
+	<Script file="system\config.lua" />
+	<Script file="interface\tools.lua" />
+	<Script file="interface\mainframe.lua" />
+	<Script file="interface\toggles.lua" />
+	<Script file="interface\default_toggles.lua" />
+	<Include file="conditions\files.xml" />
+	<Script file="system\parser.lua" />
 	<Script file="listeners.lua" />
-	<Include file="Rotations\files.xml" />
+	<Include file="rotations\files.xml" />
 	
 </Ui>
