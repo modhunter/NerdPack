@@ -1,3 +1,5 @@
+local _, NeP = ...
+
 local function BuildCRs(Spec, Last)
 	local CrList = NeP.CombatRoutines:GetList(Spec)
 	for i=1, #CrList do

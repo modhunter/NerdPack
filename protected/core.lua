@@ -31,7 +31,7 @@ C_Timer.NewTicker(1, (function()
 				end
 			end
 			-- Basic here
-			for name, func in ipairs(unlocker.functions)
+			for name, func in ipairs(unlocker.functions) do
 				NeP.Protected[name] = func
 			end
 			NeP.Protected.unlocked = true

@@ -1,6 +1,11 @@
+local _, NeP = ...
+
 NeP.CombatRoutines = {
 	CR = {}
 }
+
+--Global
+NeP.Globals.CombatRoutines = NeP.CombatRoutines
 
 local CRs = {}
 local UnitClass = UnitClass
@@ -11,10 +16,15 @@ function NeP.CombatRoutines:Add(SpecID, Name, InCombat, OutCombat, ExeOnLoad)
 		if not CRs[SpecID] then
 			CRs[SpecID] = {}
 		end
+
+		-- This compiles the CR
+		NeP.Compiler:Iterate(InCombat)
+		NeP.Compiler:Iterate(OutCombat)
+
 		CRs[SpecID][Name] = {}
 		CRs[SpecID][Name].Exe = ExeOnLoad
-		CRs[SpecID][Name][true] = NeP.Compiler:Iterate(InCombat)
-		CRs[SpecID][Name][false] = NeP.Compiler:Iterate(OutCombat)
+		CRs[SpecID][Name][true] = InCombat
+		CRs[SpecID][Name][false] = OutCombat
 	end
 end
 

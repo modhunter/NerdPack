@@ -18,6 +18,7 @@
 	<Script file="system\core.lua" />
 	<Script file="system\dsl.lua" />
 	<Script file="system\conditions.lua" />
+	<Script file="system\compiler.lua" />
 	<Script file="system\CRs.lua" />
 	<Script file="system\lib.lua" />
 	<Script file="system\listener.lua" />

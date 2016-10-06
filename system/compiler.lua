@@ -1,9 +1,11 @@
+local _, NeP = ...
+
 NeP.Compiler = {}
 
 local spellTokens = {
-  {'actions', '^%'},
+  {'actions', '^%%'},
   {'along', '^&'},
-  {'lib', '^@'}
+  {'lib', '^@'},
   {'macro', '^/'}
 }
 
@@ -29,20 +31,22 @@ end
 
 function NeP.Compiler:Target(eval)
   local ref = eval[3]
+  print(ref)
   ref = {
     target = ref
   }
-  if ref.spell:find('.ground') then
+  print(ref.target)
+  if ref.target:find('.ground') then
     ref.target = ref.target:sub(0,-8)
     ref.ground = true
   end
 end
 
-function NeP.Compiler:Itearte(eval)
+function NeP.Compiler:Iterate(eval)
   local spell, cond, target = unpack(eval)
   -- Take care of spell
   if type(spell) == 'table' then
-    self:Itearte(spell)
+    self:Iterate(spell)
   elseif type(spell) == 'string' then
     self:Spell(eval)
   elseif type(spell) == 'function' then
@@ -52,5 +56,7 @@ function NeP.Compiler:Itearte(eval)
     }
   end
   -- Take care of target
-  self:Target(eval)
+  if type(target) == 'string' then
+    self:Target(eval)
+  end
 end

@@ -1,4 +1,8 @@
+local _, NeP = ...
+
 NeP.Library = {}
+
+NeP.Globals.Library = NeP.Library
 
 local libs = {}
 

@@ -1,9 +1,11 @@
+local n_name, NeP = ...
+
 NeP.Config = {}
 
 local Data = {}
 
 NeP.Listener:Add("NeP_Config", "ADDON_LOADED", function(addon)
-	if addon:lower() == NeP.Name:lower() then
+	if addon:lower() == n_name:lower() then
 		if NePDATA == nil then
 			NePDATA = {}
 		end

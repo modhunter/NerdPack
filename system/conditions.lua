@@ -1,3 +1,5 @@
+local _, NeP = ...
+
 NeP.DSL = {}
 
 local DSL = NeP.DSL
@@ -7,10 +9,12 @@ local conditions = {}
 local Deprecated_Warn = {}
 local function Deprecated(Strg)
 	if Deprecated_Warn[Strg] then
-		NeP.Core.Print(Strg..' Was deprecated, use: '..Deprecated_Warn[Strg].replace..'instead.')
+		NeP.Core:Print(Strg..' Was deprecated, use: '..Deprecated_Warn[Strg].replace..'instead.')
 		Deprecated_Warn[Strg] = nil
 	end
 end
+
+local noop = function() end
 
 function DSL:Get(Strg)
 	Strg = Strg:lower()
@@ -18,6 +22,7 @@ function DSL:Get(Strg)
 		Deprecated(Strg)
 		return conditions[Strg]
 	end
+	return noop
 end
 
 function DSL:RegisterConditon(name, condition, overwrite)

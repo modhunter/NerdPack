@@ -13,7 +13,7 @@ end
 NeP.Protected.UseItem = function(name, target)
 end
 
-NeP.Protected.UseInvItem function(name)
+NeP.Protected.UseInvItem = function(name)
 end
 
 NeP.Protected.Distance = function (a, b)

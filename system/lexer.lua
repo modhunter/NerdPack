@@ -1,3 +1,5 @@
+local _, NeP = ...
+
 NeP.Lexer = {}
 
 local token_patterns = {

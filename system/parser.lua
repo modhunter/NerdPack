@@ -1,3 +1,5 @@
+local _, NeP = ...
+
 NeP.Parser = {}
 
 local function IsMountedCheck()
@@ -45,7 +47,7 @@ function NeP.Parser:Spell(eval)
 	local skillType = GetSpellBookItemInfo(eval.spell)
 	local isUsable, notEnoughMana = IsUsableSpell(eval.spell)
 	if skillType ~= 'FUTURESPELL' and isUsable and not notEnoughMana then
-		local GCD = NeP.DSL.Get('gcd')()
+		local GCD = NeP.DSL:Get('gcd')()
 		if GetSpellCooldown(eval.spell) <= GCD then
 			return true
 		end
@@ -74,7 +76,7 @@ function NeP.Parser:Parse(eval)
 end
 
 C_Timer.NewTicker(0.1, (function()
-	if NeP.DSL.Get('toggle')(nil, 'mastertoggle') then
+	if NeP.DSL:Get('toggle')(nil, 'mastertoggle') then
         if not UnitIsDeadOrGhost('player') and IsMountedCheck() then
           local table = NeP.CombatRoutines.CR[InCombatLockdown()]
           for i=1, #table do
