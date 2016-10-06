@@ -22,7 +22,7 @@ end
 local function OnClick(self, func, button)
 	if button == 'LeftButton' then
 		self.actv = not self.actv
-		NeP.Config:Write('TOGGLE_STATES', self.key, self.actv)
+		NeP.Config:Write('TOGGLE_STATES', self.key:lower(), self.actv)
 	end
 	if func then
 		func(self, button)

@@ -8,18 +8,18 @@ local _, NeP = ...
 --------------------------------------------------------------------------------------------------------------
 ]]
 
-NeP.DSL:RegisterConditon('energy', function(target)
+NeP.DSL:Register('energy', function(target)
 	return UnitPower(target, UnitPowerType(target))
 end)
 
 -- Returns the amount of energy you have left till max (e.g. you have a max of 100 energy and 80 energy now, so it will return 20)
-NeP.DSL:RegisterConditon('energydiff', function(target)
+NeP.DSL:Register('energydiff', function(target)
 	local max = UnitPowerMax(target, UnitPowerType(target))
 	local curr = UnitPower(target, UnitPowerType(target))
 	return (max - curr)
 end)
 
-NeP.DSL:RegisterConditon('mana', function(target)
+NeP.DSL:Register('mana', function(target)
 	if UnitExists(target) then
 		return math.floor((UnitMana(target) / UnitManaMax(target)) * 100)
 	end
@@ -29,32 +29,32 @@ end)
 --------------------------------------------------- PRIEST ---------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-NeP.DSL:RegisterConditon('insanity', function(target)
+NeP.DSL:Register('insanity', function(target)
 	return UnitPower(target, SPELL_POWER_INSANITY)
 end)
 
 --------------------------------------------------- HUNTER ---------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-NeP.DSL:RegisterConditon('petrange', function(target)
+NeP.DSL:Register('petrange', function(target)
 	if target then
 		return NeP.Engine.Distance('pet', target)
 	end
 	return 0
 end)
 
-NeP.DSL:RegisterConditon('focus', function(target)
+NeP.DSL:Register('focus', function(target)
 	return UnitPower(target, SPELL_POWER_FOCUS)
 end)
 
 --------------------------------------------------- DEATHKNIGH -----------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-NeP.DSL:RegisterConditon('runicpower', function(target)
+NeP.DSL:Register('runicpower', function(target)
 	return UnitPower(target, SPELL_POWER_RUNIC_POWER)
 end)
 
-NeP.DSL:RegisterConditon('runes', function()
+NeP.DSL:Register('runes', function()
 	local count = 0
 	local next = 0
 	for i = 1, 6 do
@@ -72,11 +72,11 @@ end)
 --------------------------------------------------- SHAMMMAN -------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-NeP.DSL:RegisterConditon('maelstrom', function(target)
+NeP.DSL:Register('maelstrom', function(target)
     return UnitPower(target, SPELL_POWER_MAELSTROM)
 end)
 
-NeP.DSL:RegisterConditon('totem', function(_, totem)
+NeP.DSL:Register('totem', function(_, totem)
 	for index = 1, 4 do
 		local totemName = select(2, GetTotemInfo(index))
 		if totemName == GetSpellName(totem) then
@@ -86,7 +86,7 @@ NeP.DSL:RegisterConditon('totem', function(_, totem)
 	return false
 end)
 
-NeP.DSL:RegisterConditon('totem.duration', function(_, totem)
+NeP.DSL:Register('totem.duration', function(_, totem)
 	for index = 1, 4 do
 		local _, totemName, startTime, duration = GetTotemInfo(index)
 		if totemName == GetSpellName(totem) then
@@ -96,7 +96,7 @@ NeP.DSL:RegisterConditon('totem.duration', function(_, totem)
 	return 0
 end)
 
-NeP.DSL:RegisterConditon('totem.time', function(_, totem)
+NeP.DSL:Register('totem.time', function(_, totem)
 	for index = 1, 4 do
 		local _, totemName, _, duration = GetTotemInfo(index)
 		if totemName == GetSpellName(totem) then
@@ -109,19 +109,19 @@ end)
 --------------------------------------------------- WARLOCK --------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-NeP.DSL:RegisterConditon('soulshards', function(target)
+NeP.DSL:Register('soulshards', function(target)
 	return UnitPower(target, SPELL_POWER_SOUL_SHARDS)
 end)
 
 --------------------------------------------------- MONK -----------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-NeP.DSL:RegisterConditon('chi', function(target)
+NeP.DSL:Register('chi', function(target)
 	return UnitPower(target, SPELL_POWER_CHI)
 end)
 
 -- Returns the number of chi you have left till max (e.g. you have a max of 5 chi and 3 chi now, so it will return 2)
-NeP.DSL:RegisterConditon('chidiff', function(target)
+NeP.DSL:Register('chidiff', function(target)
     local max = UnitPowerMax(target, SPELL_POWER_CHI)
     local curr = UnitPower(target, SPELL_POWER_CHI)
     return (max - curr)
@@ -130,15 +130,15 @@ end)
 --------------------------------------------------- DRUID ----------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-NeP.DSL:RegisterConditon('form', function()
+NeP.DSL:Register('form', function()
 	return GetShapeshiftForm()
 end)
 
-NeP.DSL:RegisterConditon('lunarpower', function(target)
+NeP.DSL:Register('lunarpower', function(target)
     return UnitPower(target, SPELL_POWER_LUNAR_POWER)
 end)
 
-NeP.DSL:RegisterConditon('mushrooms', function()
+NeP.DSL:Register('mushrooms', function()
 	local count = 0
 	for slot = 1, 3 do
 	if GetTotemInfo(slot) then
@@ -150,48 +150,48 @@ end)
 --------------------------------------------------- PALADIN --------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-NeP.DSL:RegisterConditon('holypower', function(target)
+NeP.DSL:Register('holypower', function(target)
 	return UnitPower(target, SPELL_POWER_HOLY_POWER)
 end)
 
 --------------------------------------------------- WARRIOR --------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-NeP.DSL:RegisterConditon('rage', function(target)
+NeP.DSL:Register('rage', function(target)
 	return UnitPower(target, SPELL_POWER_RAGE)
 end)
 
-NeP.DSL:RegisterConditon('stance', function()
+NeP.DSL:Register('stance', function()
 	return GetShapeshiftForm()
 end)
 
 --------------------------------------------------- DEMONHUNTER ----------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-NeP.DSL:RegisterConditon('fury', function(target)
+NeP.DSL:Register('fury', function(target)
 	return UnitPower(target, SPELL_POWER_FURY)
 end)
 -- Returns the number of fury you have left till max (e.g. you have a max of 100 fury and 80 fury now, so it will return 20)
-NeP.DSL:RegisterConditon('furydiff', function(target)
+NeP.DSL:Register('furydiff', function(target)
 	local max = UnitPowerMax(target, SPELL_POWER_FURY)
 	local curr = UnitPower(target, SPELL_POWER_FURY)
 	return (max - curr)
 end)
 
-NeP.DSL:RegisterConditon('pain', function(target)
+NeP.DSL:Register('pain', function(target)
 	return UnitPower(target, SPELL_POWER_PAIN)
 end)
 
 --------------------------------------------------- MAGE -----------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-NeP.DSL:RegisterConditon('arcanecharges', function(target)
+NeP.DSL:Register('arcanecharges', function(target)
 	return UnitPower(target, SPELL_POWER_ARCANE_CHARGES)
 end)
 
 --------------------------------------------------- ROGUE ----------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-NeP.DSL:RegisterConditon('combopoints', function(target)
+NeP.DSL:Register('combopoints', function(target)
 	return UnitPower(target, SPELL_POWER_COMBO_POINTS)
 end)

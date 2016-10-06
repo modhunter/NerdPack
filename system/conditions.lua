@@ -1,8 +1,7 @@
 local _, NeP = ...
 
 NeP.DSL = {}
-
-local DSL = NeP.DSL
+NeP.Globals.DSL = NeP.DSL
 
 local conditions = {}
 
@@ -16,7 +15,7 @@ end
 
 local noop = function() end
 
-function DSL:Get(Strg)
+function NeP.DSL:Get(Strg)
 	Strg = Strg:lower()
 	if conditions[Strg] then
 		Deprecated(Strg)
@@ -25,14 +24,14 @@ function DSL:Get(Strg)
 	return noop
 end
 
-function DSL:RegisterConditon(name, condition, overwrite)
+function NeP.DSL:Register(name, condition, overwrite)
 	name = name:lower()
 	if not conditions[name] or overwrite then
 		conditions[name] = condition
 	end
 end
 
-function DSL:RegisterConditon_Deprecated(name, replace, condition, overwrite)
+function NeP.DSL:Register_Deprecated(name, replace, condition, overwrite)
 	name = name:lower()
 	self:RegisterConditon(name, condition, overwrite)
 	if not Deprecated_Warn[name] then

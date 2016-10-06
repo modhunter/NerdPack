@@ -33,17 +33,17 @@ local Immune = {
 	stun = 			{'bestial wrath', 'bladestorm', 'desecrated ground', 'icebound fortitude','grounding totem', 'nimble brew'}
 }
 
-NeP.DSL:RegisterConditon('state.purge', function(target, spell)
+NeP.DSL:Register('state.purge', function(target, spell)
 	spell = GetSpellID(GetSpellName(spell))
 	return LibDispellable:CanDispelWith(target, spell)
 end)
 
-NeP.DSL:RegisterConditon('state', function(target, arg)
+NeP.DSL:Register('state', function(target, arg)
 	local match = States[tostring(arg)]
 	return match and tlp:Scan_Debuff(target, match)
 end)
 
-NeP.DSL:RegisterConditon('immune', function(target, arg)
+NeP.DSL:Register('immune', function(target, arg)
 	local match = Immune[tostring(arg)]
 	return match and tlp:Scan_Debuff(target, match)
 end)
