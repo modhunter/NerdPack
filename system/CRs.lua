@@ -1,8 +1,7 @@
 local _, NeP = ...
 
-NeP.CR = {
-	CR = {}
-}
+NeP.CR = {}
+NeP.CR.CR = {}
 
 local CRs = {}
 local UnitClass = UnitClass
@@ -24,11 +23,6 @@ function NeP.CR:Add(SpecID, Name, InCombat, OutCombat, ExeOnLoad)
 		CRs[SpecID][Name][false] = OutCombat
 	end
 end
-
---Global
-NeP.Globals.CR = {
-	Add = NeP.CR.Add
-}
 
 function NeP.CR:Set(Spec, Name)
 	local _, englishClass, classIndex  = UnitClass('player')
@@ -58,3 +52,7 @@ function NeP.CR:GetList(Spec)
 	end
 	return result
 end
+
+--Global
+NeP.Globals.CR = {}
+NeP.Globals.CR.Add = NeP.CR.Add

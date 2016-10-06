@@ -13,6 +13,7 @@
 	<Script file="warlock\warlock.lua" />
 	<Script file="monk\monk.lua" />
 	<Script file="druid\druid.lua" />
+	<Script file="demonhunter\demonhunter.lua" />
 
 	<!-- Rotations -->
 	<Script file="paladin\retribution.lua" />
