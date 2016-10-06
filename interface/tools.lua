@@ -3,19 +3,19 @@ NeP.Interface = {}
 NeP.Globals.Interface = {}
 
 function NeP.Interface:AddBorder(parent)
-	parent.border = parent:CreateTexture(nil,"BACKGROUND")
+	parent.border = parent:CreateTexture(nil,'BACKGROUND')
 	parent.border:SetColorTexture(0,0,0,1)
-	parent.border:SetPoint("TOPLEFT",-2,2)
-	parent.border:SetPoint("BOTTOMRIGHT",2,-2)
+	parent.border:SetPoint('TOPLEFT',-2,2)
+	parent.border:SetPoint('BOTTOMRIGHT',2,-2)
 	parent.border:SetVertexColor(0.85,0.85,0.85,1) -- half-alpha light grey
-	parent.body = parent:CreateTexture(nil,"ARTWORK")
-	parent.body:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+	parent.body = parent:CreateTexture(nil,'ARTWORK')
+	parent.body:SetTexture('Interface\\ChatFrame\\ChatFrameBackground')
 	parent.body:SetAllPoints(parent)
 	parent.body:SetVertexColor(0.1,0.1,0.1,1) -- solid dark grey
 end
 
 function NeP.Interface:NewFrame(key, parent, loc, size)
-	local temp = CreateFrame("Frame", key, parent)
+	local temp = CreateFrame('Frame', key, parent)
 	temp:SetPoint(unpack(loc))
 	temp:SetSize(unpack(size))
 	temp:SetMovable(true)
@@ -33,10 +33,10 @@ end
 
 function NeP.Interface:AddText(parent, text, loc)
 	local temp = parent:CreateFontString()
-	temp:SetFont("Fonts\\FRIZQT__.TTF", 16)
+	temp:SetFont('Fonts\\FRIZQT__.TTF', 16)
 	temp:SetShadowColor(0,0,0, 0.8)
 	temp:SetShadowOffset(-1,-1)
-	temp:SetPoint(loc or "CENTER", parent)
+	temp:SetPoint(unpack(loc), parent)
 	temp:SetText(text)
 end
 
@@ -45,12 +45,46 @@ function NeP.Interface:Tittlebar(parent, text)
 	parent.title = self:NewFrame(nil, parent, {'TOP'}, size)
 	local temp = parent.title
 	self:AddBorder(temp)
+
+	self:AddButton(temp, {'RIGHT'}, {20,20}, 'x')
+	temp.button:SetScript('OnClick', function() parent:Hide() end)
+	temp.button:SetNormalTexture(nil)
+	temp.button:SetHighlightTexture(nil)
+	temp.button:SetPushedTexture(nil)
+
 	temp:SetFrameLevel(1)
-	temp.text = self:AddText(temp, text)
+	temp.text = self:AddText(temp, text, {'LEFT'})
 	temp:EnableMouse(true)
 	temp:RegisterForDrag('LeftButton', 'RightButton')
 	temp:SetScript('OnDragStart', function() parent:StartMoving() end)
 	temp:SetScript('OnDragStop', function() parent:StopMovingOrSizing() end)
+end
+
+function NeP.Interface:AddButton(parent, loc, size, txt)
+	parent.button = CreateFrame('Button', nil, parent)
+	local temp = parent.button
+	temp:SetPoint(unpack(loc))
+	temp:SetSize(unpack(size))
+	temp:SetText('|cffFFFFFF'..txt)
+	temp:SetNormalFontObject('GameFontNormal')
+
+	-- Temp Textures!
+	local ntex = temp:CreateTexture()
+	ntex:SetTexture('Interface/Buttons/UI-Panel-Button-Up')
+	ntex:SetTexCoord(0, 0.625, 0, 0.6875)
+	ntex:SetAllPoints()	
+	local htex = temp:CreateTexture()
+	htex:SetTexture('Interface/Buttons/UI-Panel-Button-Highlight')
+	htex:SetTexCoord(0, 0.625, 0, 0.6875)
+	htex:SetAllPoints()
+	local ptex = temp:CreateTexture()
+	ptex:SetTexture('Interface/Buttons/UI-Panel-Button-Down')
+	ptex:SetTexCoord(0, 0.625, 0, 0.6875)
+	ptex:SetAllPoints()
+
+	temp:SetNormalTexture(ntex)
+	temp:SetHighlightTexture(htex)
+	temp:SetPushedTexture(ptex)
 end
 
 function NeP.Interface:BuildGUI(eval)
@@ -62,7 +96,7 @@ function NeP.Interface:BuildGUI(eval)
 	self:Tittlebar(temp, title)
 	self:AddContent(temp)
 	-- Resize with the frame (there has to be a better way for this...)
-	temp:SetScript("OnUpdate", function(self)
+	temp:SetScript('OnUpdate', function(self)
 		self.title:SetSize(temp:GetWidth(), 20)
 		self.content:SetSize(temp:GetWidth(), temp:GetHeight()-temp.title:GetHeight())
 	end)
