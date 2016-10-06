@@ -4,7 +4,7 @@ NeP.Protected = {}
 
 local unlockers = {}
 
-function NeP.Globals.AddUnlocker(name, test, functions, extended)
+function NeP.Protected:AddUnlocker(name, test, functions, extended)
 	unlockers[name] = {
 		name = name,
 		test = test,
@@ -14,10 +14,6 @@ function NeP.Globals.AddUnlocker(name, test, functions, extended)
 	if test() then
 		NeP.Core:Print('|cffff0000Found:|r ' .. name)
 	end
-end
-
-NeP.Globals.Protected = function(token, args)
-	return NeP.Protected[token](unpack(args))
 end
 
 C_Timer.NewTicker(1, (function()
@@ -38,3 +34,5 @@ C_Timer.NewTicker(1, (function()
 		end
 	end
 end), nil)
+
+NeP.Globals.Protected = NeP.Protected
