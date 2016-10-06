@@ -1,3 +1,4 @@
+local _, NeP = ...
 --[[
 						CLASS CONDITIONS!
 			Only submit class specific conditions here.

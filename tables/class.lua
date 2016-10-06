@@ -1,3 +1,5 @@
+local _, NeP = ...
+
 NeP.ClassTable = {
 	{ -- Warrior
 		Color_HEX = 'c79c6e',

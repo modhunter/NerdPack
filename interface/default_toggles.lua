@@ -1,3 +1,5 @@
+local _, NeP = ...
+
 local dToggles = {
 	{
 		key = 'mastertoggle',

@@ -1,3 +1,4 @@
+local _, NeP = ...
 local logo = '|T'..NeP.Media..'logo.blp:10:10|t'
 
 NeP.Interface.MainFrame = NeP.Interface:BuildGUI({

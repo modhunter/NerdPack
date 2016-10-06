@@ -1,3 +1,4 @@
+local _, NeP = ...
 --[[
 					BUFFS/DEBUFFS CONDITIONS!
 			Only submit BUFF specific conditions here.

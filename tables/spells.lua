@@ -2267,6 +2267,7 @@ local SpellID = {
 	}
 }
 
+local _, NeP = ...
 NeP.Spells = {}
 local GetLocale = GetLocale
 local GetSpellInfo = GetSpellInfo

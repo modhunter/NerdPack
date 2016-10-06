@@ -14,6 +14,7 @@ local ByPassMounts = {
 	221673,221595,221672,221671
 }
 
+local _, NeP = ...
 function NeP.ByPassMounts(ID)
 	for i=1, #ByPassMounts do
 		if tonumber(ID) == ByPassMounts[i] then

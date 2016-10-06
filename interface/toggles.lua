@@ -1,3 +1,4 @@
+local _, NeP = ...
 local mainframe = NeP.Interface.MainFrame
 
 local ButtonsSize = 40

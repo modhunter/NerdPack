@@ -1,3 +1,5 @@
+local _, NeP = ...
+
 local function checkChanneling(target)
 	local name, _, _, _, startTime, endTime, _, notInterruptible = UnitChannelInfo(target)
 	if name then return name, startTime, endTime, notInterruptible end
@@ -32,9 +34,9 @@ NeP.DSL:RegisterConditon('casting.percent', function(target, spell)
 	return 0
 end)
 
-NeP.DSL:RegisterConditon('casting.delta', function(target, spell)		
+NeP.DSL:RegisterConditon('casting.delta', function(target, spell)
 	local name, startTime, endTime, notInterruptible = checkCasting(target)
-	if name and not notInterruptible then	
+	if name and not notInterruptible then
 		local castLength = (endTime - startTime) / 1000
 		local secondsLeft = endTime / 1000 - GetTime()
 		return secondsLeft, castLength

@@ -1,3 +1,4 @@
+local _, NeP = ...
 local LibDispellable = LibStub('LibDispellable-1.0')
 local tlp = NeP.Tooltip
 
@@ -34,7 +35,7 @@ local Immune = {
 
 NeP.DSL:RegisterConditon('state.purge', function(target, spell)
 	spell = GetSpellID(GetSpellName(spell))
-	return LibDispellable:CanDispelWith(target, spell) 
+	return LibDispellable:CanDispelWith(target, spell)
 end)
 
 NeP.DSL:RegisterConditon('state', function(target, arg)

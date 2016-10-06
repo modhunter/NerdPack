@@ -1,3 +1,4 @@
+local _, NeP = ...
 local LibBoss = LibStub("LibBossIDs-1.0")
 --[[
 					UNITS CONDITIONS!
@@ -27,7 +28,7 @@ local UnitClsf = {
 
 NeP.DSL:RegisterConditon('boss', function (target)
 	local classification = UnitClassification(target)
-	if UnitClsf[classification] then 
+	if UnitClsf[classification] then
 		return UnitClsf[classification] >= 3
 	elseif LibBoss.BossIDs[UnitID(target)] then
 		return true
@@ -47,7 +48,7 @@ end)
 
 NeP.DSL:RegisterConditon("id", function(target, id)
 	local expectedID = tonumber(id)
-	return expectedID and UnitID(target) == expectedID 
+	return expectedID and UnitID(target) == expectedID
 end)
 
 NeP.DSL:RegisterConditon("threat", function(target)

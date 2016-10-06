@@ -1,3 +1,4 @@
+local _, NeP = ...
 NeP.Interface = {}
 
 function NeP.Interface:NewFrame(eval)
@@ -9,7 +10,7 @@ function NeP.Interface:NewFrame(eval)
 	temp:SetMovable(true)
 	temp:SetFrameLevel(0)
 	temp:SetClampedToScreen(true)
-	
+
 	temp.border = temp:CreateTexture(nil,"BACKGROUND")
 	temp.border:SetColorTexture(0,0,0,1)
 	temp.border:SetPoint("TOPLEFT",-2,2)

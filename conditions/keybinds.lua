@@ -1,3 +1,5 @@
+local _, NeP = ...
+
 local KEYBINDS = {
 	-- Shift
 	['shift'] = function() return IsShiftKeyDown() end,
