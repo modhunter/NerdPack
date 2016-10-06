@@ -78,7 +78,7 @@ end
 C_Timer.NewTicker(0.1, (function()
 	if NeP.DSL:Get('toggle')(nil, 'mastertoggle') then
         if not UnitIsDeadOrGhost('player') and IsMountedCheck() then
-          local table = NeP.CombatRoutines.CR[InCombatLockdown()]
+          local table = NeP.CR.CR[InCombatLockdown()]
           for i=1, #table do
             local r = NeP.Parser:Parse(table[i])
             if r then break end
