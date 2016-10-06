@@ -27,7 +27,7 @@ function NeP.Interface:AddCR(Spec, Name, checked)
 		func = function()
 			NeP.Interface:ResetToggles()
 			NeP.Core:Print('Loaded: '..Name)
-			NeP.CombatRoutines:Set(Spec, Name)
+			NeP.CR:Set(Spec, Name)
 		end
 	})
 end

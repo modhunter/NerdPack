@@ -1,16 +1,13 @@
 local _, NeP = ...
 
-NeP.CombatRoutines = {
+NeP.CR = {
 	CR = {}
 }
-
---Global
-NeP.Globals.CombatRoutines = NeP.CombatRoutines
 
 local CRs = {}
 local UnitClass = UnitClass
 
-function NeP.CombatRoutines:Add(SpecID, Name, InCombat, OutCombat, ExeOnLoad)
+function NeP.CR:Add(SpecID, Name, InCombat, OutCombat, ExeOnLoad)
 	local classIndex = select(3, UnitClass('player'))
 	if NeP.ClassTable[classIndex][SpecID] or classIndex == SpecID then
 		if not CRs[SpecID] then
@@ -28,7 +25,12 @@ function NeP.CombatRoutines:Add(SpecID, Name, InCombat, OutCombat, ExeOnLoad)
 	end
 end
 
-function NeP.CombatRoutines:Set(Spec, Name)
+--Global
+NeP.Globals.CR = {
+	Add = NeP.CR.Add
+}
+
+function NeP.CR:Set(Spec, Name)
 	local _, englishClass, classIndex  = UnitClass('player')
 	local a, b = englishClass:sub(1, 1):upper(), englishClass:sub(2):lower()
 	local classCR = '[NeP] '..a..b..' - Basic'
@@ -43,7 +45,7 @@ function NeP.CombatRoutines:Set(Spec, Name)
 	end
 end
 
-function NeP.CombatRoutines:GetList(Spec)
+function NeP.CR:GetList(Spec)
 	local result = {}
 	local classIndex = select(3, UnitClass('player'))
 	if CRs[Spec] then

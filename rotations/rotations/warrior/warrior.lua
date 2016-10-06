@@ -17,4 +17,4 @@ local OutCombat = {
 	{Keybinds}
 }
 
-NeP.CombatRoutines:Add(1, '[NeP] Warrior - Basic', InCombat, OutCombat)
+NeP.CR:Add(1, '[NeP] Warrior - Basic', InCombat, OutCombat)

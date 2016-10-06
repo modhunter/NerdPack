@@ -8,4 +8,4 @@ local outCombat = {
 	
 }
 
-NeP.CombatRoutines:Add(3, '[NeP] Hunter - Basic', inCombat, outCombat)
+NeP.CR:Add(3, '[NeP] Hunter - Basic', inCombat, outCombat)
