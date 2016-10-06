@@ -20,7 +20,7 @@ NeP.DSL:Register('timetomax', function(target, spell)
 end)
 
 NeP.DSL:Register('toggle', function(_, toggle)
-	return NeP.Config:Read('TOGGLE_STATES', toggle_lower(), false)
+	return NeP.Config:Read('TOGGLE_STATES', toggle:lower(), false)
 end)
 
 NeP.DSL:Register('casting.percent', function(target, spell)
