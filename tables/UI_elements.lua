@@ -130,7 +130,7 @@ DiesalGUI:RegisterObjectConstructor("Rule", function()
 	self.frame		= frame
 	frame:SetHeight(1)
 	frame.texture = frame:CreateTexture()
-	frame.texture:SetColorTexture(0,0,0,0.5)
+	frame.texture:SetColorTexture(0,0,0,1)
 	frame.texture:SetAllPoints(frame)
 	self.SetParent = function(self, parent)
 		self.frame:SetParent(parent)
@@ -185,6 +185,6 @@ DiesalGUI:RegisterObjectConstructor("StatusBar", function()
 	self.OnAcquire = function(self)	
 		self:Show()		
 	end
-	self.type = "Rule"
+	self.type = "StatusBar"
 	return self
 end, 1)

@@ -11,7 +11,7 @@ function NeP.Interface:Header(element, parent, offset, table)
 	parent:AddChild(tmp)
 	tmp = tmp.fontString
 	tmp:SetPoint("TOPLEFT", parent.content, "TOPLEFT", 5, offset)
-	tmp:SetText(element.text)
+	tmp:SetText('|cff'..table.color..element.text)
 	if element.justify then
 		tmp:SetJustifyH(element.justify)
 	else
@@ -376,6 +376,7 @@ local _Elements = {
 	header = 	{ func = 'Header', offset = -16 },
 	text = 		{ func = 'Text', offset = 0 },
 	rule = 		{ func = 'Rule', offset = -10 },
+	ruler = 	{ func = 'Rule', offset = -10 },
 	texture = 	{ func = 'Texture', offset = 0 },
 	checkbox = 	{ func = 'Checkbox', offset = -16 },
 	spinner = 	{ func = 'Spinner', offset = -19 },
@@ -423,7 +424,7 @@ function NeP.Interface:BuildGUI(eval)
 	end
 	if not eval.key then return end
 	local parent = DiesalGUI:Create('Window')
-	usedGUIs[eval.key] = function() print('hit') parent:Show() end
+	usedGUIs[eval.key] = function() parent:Show() end
 	parent:SetWidth(eval.width or 200)
 	parent:SetHeight(eval.height or 300)
 	parent.frame:SetClampedToScreen(true)
