@@ -4,7 +4,7 @@ NeP.Globals.Interface = {}
 
 local DiesalGUI = LibStub("DiesalGUI-1.0")
 
-function NeP.Interface:Header(element, parent, offset)
+function NeP.Interface:Header(element, parent, offset, table)
 	local tmp = DiesalGUI:Create("FontString")
 	tmp:SetParent(parent.content)
 	parent:AddChild(tmp)
@@ -26,7 +26,7 @@ function NeP.Interface:Header(element, parent, offset)
 	end
 end
 
-function NeP.Interface:Text(element, parent, offset)
+function NeP.Interface:Text(element, parent, offset, table)
 	local tmp = DiesalGUI:Create("FontString")
 	tmp:SetParent(parent.content)
 	parent:AddChild(tmp)
@@ -48,7 +48,7 @@ function NeP.Interface:Text(element, parent, offset)
 	end
 end
 
-function NeP.Interface:Rule(element, parent, offset)
+function NeP.Interface:Rule(element, parent, offset, table)
 	local tmp = DiesalGUI:Create('Rule')
 	parent:AddChild(tmp)
 	tmp:SetParent(parent.content)
@@ -59,7 +59,7 @@ function NeP.Interface:Rule(element, parent, offset)
 	end
 end
 
-function NeP.Interface:Texture(element, parent, offset)
+function NeP.Interface:Texture(element, parent, offset, table)
 	local tmp = CreateFrame('Frame')
 	tmp:SetParent(parent.content)
 	if element.center then
@@ -78,15 +78,15 @@ function NeP.Interface:Texture(element, parent, offset)
 	end
 end
 
-function NeP.Interface:Checkbox(element, parent, offset)
+function NeP.Interface:Checkbox(element, parent, offset, table)
 	local tmp = DiesalGUI:Create('CheckBox')
 	parent:AddChild(tmp)
 	tmp:SetParent(parent.content)
 	tmp:SetPoint("TOPLEFT", parent.content, "TOPLEFT", 5, offset)
 	tmp:SetEventListener('OnValueChanged', function(this, event, checked)
-		NeP.Config.Write(table.key..'_'..element.key, checked)
+		NeP.Config:Write(table.key, element.key, checked)
 	end)
-	tmp:SetChecked(NeP.Config.Read(table.key..'_'..element.key, element.default or false))
+	tmp:SetChecked(NeP.Config:Read(table.key, element.key, element.default or false))
 	local tmp_text = DiesalGUI:Create("FontString")
 	tmp_text:SetParent(parent.content)
 	parent:AddChild(tmp_text)
@@ -113,13 +113,13 @@ function NeP.Interface:Checkbox(element, parent, offset)
 	end
 end
 
-function NeP.Interface:Spinner(element, parent, offset)
+function NeP.Interface:Spinner(element, parent, offset, table)
 	local tmp_spin = DiesalGUI:Create('Spinner')
 	parent:AddChild(tmp_spin)
 	tmp_spin:SetParent(parent.content)
 	tmp_spin:SetPoint("TOPRIGHT", parent.content, "TOPRIGHT", -5, offset)
 	tmp_spin:SetNumber(
-		NeP.Config.Read(table.key..'_'..element.key, element.default)
+		NeP.Config:Read(table.key, element.key, element.default)
 	)
 	if element.width then
 		tmp_spin.settings.width = element.width
@@ -140,7 +140,7 @@ function NeP.Interface:Spinner(element, parent, offset)
 	tmp_spin:AddStyleSheet(NeP.spinnerStyleSheet)
 	tmp_spin:SetEventListener('OnValueChanged', function(this, event, userInput, number)
 		if not userInput then return end
-		NeP.Config.Write(table.key..'_'..element.key, number)
+		NeP.Config:Write(table.key, element.key, number)
 	end)
 	local tmp_text = DiesalGUI:Create("FontString")
 	tmp_text:SetParent(parent.content)
@@ -170,7 +170,7 @@ function NeP.Interface:Spinner(element, parent, offset)
 	end
 end
 
-function NeP.Interface:Checkspin(element, parent, offset)
+function NeP.Interface:Checkspin(element, parent, offset, table)
 	local tmp_spin = DiesalGUI:Create('Spinner')
 	parent:AddChild(tmp_spin)
 	tmp_spin:SetParent(parent.content)
@@ -191,22 +191,22 @@ function NeP.Interface:Checkspin(element, parent, offset)
 		tmp_spin.settings.shiftStep = element.shiftStep
 	end
 	tmp_spin:SetNumber(
-		NeP.Config.Read(table.key..'_'..element.key..'_spin', element.default_spin or 0)
+		NeP.Config:Read(table.key, element.key..'_spin', element.default_spin or 0)
 	)
 	tmp_spin:AddStyleSheet(NeP.spinnerStyleSheet)
 	tmp_spin:ApplySettings()
 	tmp_spin:SetEventListener('OnValueChanged', function(this, event, userInput, number)
 		if not userInput then return end
-		NeP.Config.Write(table.key..'_'..element.key..'_spin', number)
+		NeP.Config:Write(table.key, element.key..'_spin', number)
 	end)
 	local tmp_check = DiesalGUI:Create('CheckBox')
 	parent:AddChild(tmp_check)
 	tmp_check:SetParent(parent.content)
 	tmp_check:SetPoint("TOPLEFT", parent.content, "TOPLEFT", 5, offset-2)
 	tmp_check:SetEventListener('OnValueChanged', function(this, event, checked)
-		NeP.Config.Write(table.key..'_'..element.key..'_check', checked)
+		NeP.Config:Write(table.key, element.key..'_check', checked)
 	end)
-	tmp_check:SetChecked(NeP.Config.Read(table.key..'_'..element.key..'_check', element.default_check or false))
+	tmp_check:SetChecked(NeP.Config:Read(table.key, element.key..'_check', element.default_check or false))
 	local tmp_text = DiesalGUI:Create("FontString")
 	tmp_text:SetParent(parent.content)
 	parent:AddChild(tmp_text)
@@ -236,7 +236,7 @@ function NeP.Interface:Checkspin(element, parent, offset)
 	end
 end
 
-function NeP.Interface:Combo(element, parent, offset)
+function NeP.Interface:Combo(element, parent, offset, table)
 	local tmp_list = DiesalGUI:Create('Dropdown')
 	parent:AddChild(tmp_list)
 	tmp_list:SetParent(parent.content)
@@ -249,9 +249,9 @@ function NeP.Interface:Combo(element, parent, offset)
 	end
 	tmp_list:SetList(list, orderdKeys)
 	tmp_list:SetEventListener('OnValueChanged', function(this, event, value)
-		NeP.Config.Write(table.key..'_'..element.key, value)
+		NeP.Config:Write(table.key, element.key, value)
 	end)
-	tmp_list:SetValue(NeP.Config.Read(table.key..'_'..element.key, element.default))
+	tmp_list:SetValue(NeP.Config:Read(table.key, element.key, element.default))
 	local tmp_text = DiesalGUI:Create("FontString")
 	tmp_text:SetParent(parent.content)
 	parent:AddChild(tmp_text)
@@ -280,7 +280,7 @@ function NeP.Interface:Combo(element, parent, offset)
 	end
 end
 
-function NeP.Interface:Button(element, parent, offset)
+function NeP.Interface:Button(element, parent, offset, table)
 	local tmp = DiesalGUI:Create("Button")
 	parent:AddChild(tmp)
 	tmp:SetParent(parent.content)
@@ -311,7 +311,7 @@ function NeP.Interface:Button(element, parent, offset)
 	end
 end
 
-function NeP.Interface:Input(element, parent, offset)
+function NeP.Interface:Input(element, parent, offset, table)
 	local tmp_input = DiesalGUI:Create('Input')
 	parent:AddChild(tmp_input)
 	tmp_input:SetParent(parent.content)
@@ -319,9 +319,9 @@ function NeP.Interface:Input(element, parent, offset)
 	if element.width then
 		tmp_input:SetWidth(element.width)
 	end
-	tmp_input:SetText(NeP.Config.Read(table.key..'_'..element.key, element.default or ''))
+	tmp_input:SetText(NeP.Config:Read(table.key, element.key, element.default or ''))
 	tmp_input:SetEventListener('OnEditFocusLost', function(this)
-		NeP.Config.Write(table.key..'_'..element.key, this:GetText())
+		NeP.Config:Write(table.key, element.key, this:GetText())
 	end)
 	local tmp_text = DiesalGUI:Create("FontString")
 	tmp_text:SetParent(parent.content)
@@ -350,7 +350,7 @@ function NeP.Interface:Input(element, parent, offset)
 	end
 end
 
-function NeP.Interface:Statusbar(element, parent, offset)
+function NeP.Interface:Statusbar(element, parent, offset, table)
 	local tmp_statusbar = DiesalGUI:Create('StatusBar')
 	parent:AddChild(tmp_statusbar)
 	tmp_statusbar:SetParent(parent.content)
@@ -393,7 +393,7 @@ function NeP.Interface:BuildElements(table, parent)
 		if _Elements[element.type] then
 			local func = _Elements[element.type].func
 			local _offset = _Elements[element.type].offset
-			self[func](self, element, parent, offset)
+			self[func](self, element, parent, offset, table)
 			offset = offset + _offset
 		end
 		if element.type == 'texture' then
@@ -433,7 +433,7 @@ function NeP.Interface:BuildGUI(eval)
 		window.parent = parent
 		config.window = window
 		window.elements = { }
-		self:BuildElements(config, window)
+		self:BuildElements(eval, window)
 	end
 
 	return parent
