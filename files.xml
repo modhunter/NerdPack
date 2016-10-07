@@ -33,5 +33,6 @@
 	<Script file="listeners.lua" />
 	<Include file="rotations\files.xml" />
 	<Include file="protected\files.xml" />
+	<Script file="system\om.lua" />
 
 </Ui>
