@@ -5,8 +5,7 @@ NeP.OM = {}
 local OM_c = {
 	Enemies = {},
 	Friendly = {},
-	Dead = {},
-	Objects = {}
+	Dead = {}
 }
 
 function NeP.OM:Garbage()
@@ -48,28 +47,25 @@ function NeP.OM:Insert(ref, Obj)
 end
 
 function NeP.OM:Add(Obj)
+	if not UnitExists(Obj) then return end
 	-- Dead Units
 	if UnitIsDeadOrGhost(Obj) then
-		NeP.OM:Insert('Enemies', Obj)
+		NeP.OM:Insert('Dead', Obj)
 	-- Friendly
 	elseif UnitIsFriend('player', Obj) then
 		NeP.OM:Insert('Friendly', Obj)
 	-- Enemie
 	elseif UnitCanAttack('player', Obj) then
-		NeP.OM:Insert('Dead', Obj)
-	-- Object
-	elseif ObjectWithIndex and ObjectIsType(Obj, ObjectTypes.GameObject) then
-		NeP.OM:Insert('Objects', Obj)
+		NeP.OM:Insert('Enemies', Obj)
 	end
 end
 
-C_Timer.NewTicker(0.1, (function()
+C_Timer.NewTicker(1, (function()
 	NeP.OM:Garbage()
 end), nil)
 
 -- Gobals
 NeP.Globals.OM = {
 	Add = NeP.OM.Add,
-	Get = NeP.OM.Get,
-	test = NeP.OM.Garbage
+	Get = NeP.OM.Get
 }
