@@ -12,7 +12,8 @@ local function SetTexture(parent, icon)
 	if icon then
 		temp:SetTexture(icon)
 	else
-		temp:SetColorTexture(1,1,1,0.7)
+		local r,b,g = unpack(NeP.Core:ClassColor('player', 'rgb'))
+		temp:SetColorTexture(r,g,b,.6)
 	end
 	temp:SetAllPoints(parent)
 	temp:SetTexCoord(.08, .92, .08, .92)

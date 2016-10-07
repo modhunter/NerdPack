@@ -8,13 +8,16 @@ end
 
 local d_color = {
 	hex = 'FFFFFF',
-	rbg = {1,1,1}
+	rgb = {1,1,1}
 }
 
 function NeP.Core:ClassColor(unit, type)
 	if UnitExists(unit) then
 		local classid  = select(3, UnitClass(unit))
-		return NeP.ClassTable[classid][type:lower()]
+		if classid then
+			print(classid)
+			return NeP.ClassTable[classid][type:lower()]
+		end
 	end
 	return d_color[type:lower()]
 end
