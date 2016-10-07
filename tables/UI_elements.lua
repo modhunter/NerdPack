@@ -103,6 +103,7 @@ NeP.UI.statusBarStylesheet = {
 }
 
 local DiesalGUI = LibStub("DiesalGUI-1.0")
+local SharedMedia = LibStub("LibSharedMedia-3.0")
 
 DiesalGUI:RegisterObjectConstructor("FontString", function()
 	local self 		= DiesalGUI:CreateObjectBase(Type)

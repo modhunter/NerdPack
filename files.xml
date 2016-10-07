@@ -16,10 +16,7 @@
 	<Script file="system\lib.lua" />
 	<Script file="system\listener.lua" />
 	<Script file="system\config.lua" />
-	<Script file="interface\tools.lua" />
-	<Script file="interface\mainframe.lua" />
-	<Script file="interface\toggles.lua" />
-	<Script file="interface\default_toggles.lua" />
+	<Include file="interface\files.xml" />
 	<Include file="conditions\files.xml" />
 	<Script file="system\parser.lua" />
 	<Script file="listeners.lua" />

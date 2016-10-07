@@ -3,7 +3,7 @@ local _, NeP = ...
 NeP.OM = {}
 
 local OM_c = {
-	Enemies = {},
+	Enemie = {},
 	Friendly = {},
 	Dead = {}
 }
@@ -40,7 +40,7 @@ function NeP.OM:Insert(ref, Obj)
 		name = UnitName(Obj),
 		distance = distance,
 		id = tonumber(ObjID) or '0',
-		guid = GUID,
+		guid = GUID
 	}
 end
 
@@ -54,7 +54,7 @@ function NeP.OM:Add(Obj)
 		NeP.OM:Insert('Friendly', Obj)
 	-- Enemie
 	elseif UnitCanAttack('player', Obj) then
-		NeP.OM:Insert('Enemies', Obj)
+		NeP.OM:Insert('Enemie', Obj)
 	end
 end
 
