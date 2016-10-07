@@ -4,7 +4,7 @@ NeP.Globals.Interface = {}
 
 local DiesalGUI = LibStub("DiesalGUI-1.0")
 
-function NeP.Interface:Header(element, parent)
+function NeP.Interface:Header(element, parent, offset)
 	local tmp = DiesalGUI:Create("FontString")
 	tmp:SetParent(parent.content)
 	parent:AddChild(tmp)
@@ -26,7 +26,7 @@ function NeP.Interface:Header(element, parent)
 	end
 end
 
-function NeP.Interface:Text(element, parent)
+function NeP.Interface:Text(element, parent, offset)
 	local tmp = DiesalGUI:Create("FontString")
 	tmp:SetParent(parent.content)
 	parent:AddChild(tmp)
@@ -48,7 +48,7 @@ function NeP.Interface:Text(element, parent)
 	end
 end
 
-function NeP.Interface:Rule(element, parent)
+function NeP.Interface:Rule(element, parent, offset)
 	local tmp = DiesalGUI:Create('Rule')
 	parent:AddChild(tmp)
 	tmp:SetParent(parent.content)
@@ -59,7 +59,7 @@ function NeP.Interface:Rule(element, parent)
 	end
 end
 
-function NeP.Interface:Texture(element, parent)
+function NeP.Interface:Texture(element, parent, offset)
 	local tmp = CreateFrame('Frame')
 	tmp:SetParent(parent.content)
 	if element.center then
@@ -78,7 +78,7 @@ function NeP.Interface:Texture(element, parent)
 	end
 end
 
-function NeP.Interface:Checkbox(element, parent)
+function NeP.Interface:Checkbox(element, parent, offset)
 	local tmp = DiesalGUI:Create('CheckBox')
 	parent:AddChild(tmp)
 	tmp:SetParent(parent.content)
@@ -113,7 +113,7 @@ function NeP.Interface:Checkbox(element, parent)
 	end
 end
 
-function NeP.Interface:Spinner(element, parent)
+function NeP.Interface:Spinner(element, parent, offset)
 	local tmp_spin = DiesalGUI:Create('Spinner')
 	parent:AddChild(tmp_spin)
 	tmp_spin:SetParent(parent.content)
@@ -170,7 +170,7 @@ function NeP.Interface:Spinner(element, parent)
 	end
 end
 
-function NeP.Interface:Checkspin(element, parent)
+function NeP.Interface:Checkspin(element, parent, offset)
 	local tmp_spin = DiesalGUI:Create('Spinner')
 	parent:AddChild(tmp_spin)
 	tmp_spin:SetParent(parent.content)
@@ -236,7 +236,7 @@ function NeP.Interface:Checkspin(element, parent)
 	end
 end
 
-function NeP.Interface:Combo(element, parent)
+function NeP.Interface:Combo(element, parent, offset)
 	local tmp_list = DiesalGUI:Create('Dropdown')
 	parent:AddChild(tmp_list)
 	tmp_list:SetParent(parent.content)
@@ -280,7 +280,7 @@ function NeP.Interface:Combo(element, parent)
 	end
 end
 
-function NeP.Interface:Button(element, parent)
+function NeP.Interface:Button(element, parent, offset)
 	local tmp = DiesalGUI:Create("Button")
 	parent:AddChild(tmp)
 	tmp:SetParent(parent.content)
@@ -311,7 +311,7 @@ function NeP.Interface:Button(element, parent)
 	end
 end
 
-function NeP.Interface:Input(element, parent)
+function NeP.Interface:Input(element, parent, offset)
 	local tmp_input = DiesalGUI:Create('Input')
 	parent:AddChild(tmp_input)
 	tmp_input:SetParent(parent.content)
@@ -350,7 +350,7 @@ function NeP.Interface:Input(element, parent)
 	end
 end
 
-function NeP.Interface:Statusbar(element, parent)
+function NeP.Interface:Statusbar(element, parent, offset)
 	local tmp_statusbar = DiesalGUI:Create('StatusBar')
 	parent:AddChild(tmp_statusbar)
 	tmp_statusbar:SetParent(parent.content)
@@ -369,8 +369,7 @@ function NeP.Interface:Statusbar(element, parent)
 	end
 end
 
-function NeP.Interface:Noop()
-end
+function NeP.Interface:Noop() end
 
 local _Elements = {
 	header = 	{ func = 'Header', offset = -16 },
