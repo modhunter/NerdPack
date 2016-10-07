@@ -421,12 +421,14 @@ function NeP.Interface:BuildGUI(eval)
 	parent:SetEventListener('OnDragStop', function(self, event, left, top)
 		NeP.Config:Write(eval.key, 'Location', {left, top})
 	end)
-	local left, top = unpack(NeP.Config:Read(eval.key, 'Location', {false, false}))
-	if left and top then
-		parent.settings.left = left
-		parent.settings.top = top
-		parent:UpdatePosition()
-	end
+	NeP.Config:WhenLoad(eval.key, function()
+		local left, top = unpack(NeP.Config:Read(eval.key, 'Location', {false, false}))
+		if left and top then
+			parent.settings.left = left
+			parent.settings.top = top
+			parent:UpdatePosition()
+		end
+	end)
 
 	if not eval.color then eval.color = "ee2200" end
 	if type(eval.color) == 'function' then eval.color = eval.color() end

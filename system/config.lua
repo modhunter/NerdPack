@@ -1,8 +1,16 @@
 local n_name, NeP = ...
 
 NeP.Config = {}
-
 local Data = {}
+local Delays = {}
+
+function NeP.Config:WhenLoad(key, func)
+	if Delays then
+		Delays[key] = func
+	else
+		func()
+	end
+end
 
 NeP.Listener:Add("NeP_Config", "ADDON_LOADED", function(addon)
 	if addon:lower() == n_name:lower() then
@@ -10,6 +18,12 @@ NeP.Listener:Add("NeP_Config", "ADDON_LOADED", function(addon)
 			NePDATA = {}
 		end
 		Data = NePDATA
+	end
+	if Delays then
+		for k,v in pairs(Delays) do
+			v()
+		end
+		Delays = nil
 	end
 end)
 
