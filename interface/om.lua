@@ -14,9 +14,9 @@ local parent = NeP.Interface:BuildGUI({
 --parent:Hide()
 NeP.Interface:Add('ObjectManager', function() parent:Show() end)
 
-local dOM = 'Enemie'
+local dOM = 'Enemy'
 local bt = {
-	ENEMIE = {a = 'TOPLEFT', b = 'Enemie'},
+	ENEMIE = {a = 'TOPLEFT', b = 'Enemy'},
 	FRIENDLY = {a = 'TOP', b = 'Friendly'},
 	DEAD = {a = 'TOPRIGHT', b = 'Dead'}
 }
@@ -67,9 +67,9 @@ local function RefreshGUI()
 		local Health = UnitHealth(Obj.key) and math.floor((UnitHealth(Obj.key) / UnitHealthMax(Obj.key)) * 100) or 100
 		local statusBar = getStatusBar()
 		statusBar.frame:SetPoint('TOP', ListWindow.content, 'TOP', 2, offset )
-		statusBar.frame.Left:SetText(Obj.name)
+		statusBar.frame.Left:SetText('|cff'..NeP.Core:ClassColor(Obj.key, 'hex')..Obj.name)
 		statusBar.frame.Right:SetText('( |cffff0000ID|r: '..Obj.id..' / |cffff0000Health|r: '..Health..' / |cffff0000Dist|r: '..(Obj.distance or 0)..' )')
-		--statusBar.frame:SetScript('OnMouseDown', function(self) TargetUnit(Obj.key) end)
+		statusBar.frame:SetScript('OnMouseDown', function(self) TargetUnit(Obj.key) end)
 		statusBar:SetValue(Health)
 		offset = offset -18
 	end

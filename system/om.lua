@@ -3,7 +3,7 @@ local _, NeP = ...
 NeP.OM = {}
 
 local OM_c = {
-	Enemie = {},
+	Enemy = {},
 	Friendly = {},
 	Dead = {}
 }
@@ -54,13 +54,11 @@ function NeP.OM:Add(Obj)
 		NeP.OM:Insert('Friendly', Obj)
 	-- Enemie
 	elseif UnitCanAttack('player', Obj) then
-		NeP.OM:Insert('Enemie', Obj)
+		NeP.OM:Insert('Enemy', Obj)
 	end
 end
 
-C_Timer.NewTicker(1, (function()
-	NeP.OM:Garbage()
-end), nil)
+C_Timer.NewTicker(1, NeP.OM.Garbage, nil)
 
 -- Gobals
 NeP.Globals.OM = {

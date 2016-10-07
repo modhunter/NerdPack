@@ -2,8 +2,8 @@ local _, NeP = ...
 
 NeP.ClassTable = {
 	{ -- Warrior
-		Color_HEX = 'c79c6e',
-		Color_RGB = {0.78,0.61,0.43},
+		hex = 'c79c6e',
+		rgb = {0.78,0.61,0.43},
 		[71] = {
 			range = 'melee',
 			name = 'Arms',
@@ -21,8 +21,8 @@ NeP.ClassTable = {
 		}
 	},
 	{  -- Paladin
-		Color_HEX = 'f58cba',
-		Color_RGB = {0.96,0.55,0.73},
+		hex = 'f58cba',
+		rgb = {0.96,0.55,0.73},
 		[65] = {
 			range = 'melee',
 			name = 'Holy',
@@ -40,8 +40,8 @@ NeP.ClassTable = {
 		}
 	},
 	{ -- Hunter
-		Color_HEX = 'abd473',
-		Color_RGB = {0.67,0.83,0.45},
+		hex = 'abd473',
+		rgb = {0.67,0.83,0.45},
 		[253] = {
 			range = 'melee',
 			name = 'Beast Mastery',
@@ -59,8 +59,8 @@ NeP.ClassTable = {
 		}
 	},
 	{ -- Rogue
-		Color_HEX = 'fff569',
-		Color_RGB = {1,0.96,0.41},
+		hex = 'fff569',
+		rgb = {1,0.96,0.41},
 		[259] = {
 			range = 'melee',
 			name = 'Assassination',
@@ -78,8 +78,8 @@ NeP.ClassTable = {
 		}
 	},
 	{  -- Priest
-		Color_HEX = 'ffffff',
-		Color_RGB = {1,1,1},
+		hex = 'ffffff',
+		rgb = {1,1,1},
 		[256] = {
 			range = 'Ranged',
 			name = 'Discipline',
@@ -97,8 +97,8 @@ NeP.ClassTable = {
 		}
 	},
 	{ -- DeathKnight
-		Color_HEX = 'c41f3b',
-		Color_RGB = {0.77,0.12,0.23},
+		hex = 'c41f3b',
+		rgb = {0.77,0.12,0.23},
 		[250] = {
 			range = 'melee',
 			name = 'Blood',
@@ -116,8 +116,8 @@ NeP.ClassTable = {
 		}
 	},
 	{  -- Shaman
-		Color_HEX = '0070de',
-		Color_RGB = {0,0.44,0.87},
+		hex = '0070de',
+		rgb = {0,0.44,0.87},
 		[262] = {
 			range = 'Ranged',
 			name = 'Elemental',
@@ -135,8 +135,8 @@ NeP.ClassTable = {
 		}
 	},
 	{  -- Mage
-		Color_HEX = '69ccf0',
-		Color_RGB = {0.41,0.8,0.94},
+		hex = '69ccf0',
+		rgb = {0.41,0.8,0.94},
 		[62] = {
 			range = 'Ranged',
 			name = 'Arcane',
@@ -154,8 +154,8 @@ NeP.ClassTable = {
 		}
 	},
 	{ -- Warlock
-		Color_HEX = '9482c9',
-		Color_RGB = {0.58,0.51,0.79},
+		hex = '9482c9',
+		rgb = {0.58,0.51,0.79},
 		[265] = {
 			range = 'Ranged',
 			name = 'Affliction',
@@ -173,8 +173,8 @@ NeP.ClassTable = {
 		}
 	},
 	{ -- Monk
-		Color_HEX = '00ff96',
-		Color_RGB = {r = 0,1,0.59},
+		hex = '00ff96',
+		rgb = {r = 0,1,0.59},
 		[268] = {
 			range = 'melee',
 			name = 'Brewmaster',
@@ -192,8 +192,8 @@ NeP.ClassTable = {
 		}
 	},
 	{ -- Druid
-		Color_HEX = 'ff7d0a',
-		Color_RGB = {1,0.49,0.04},
+		hex = 'ff7d0a',
+		rgb = {1,0.49,0.04},
 		[102] = {
 			range = 'Ranged',
 			name = 'Balance',
@@ -216,8 +216,8 @@ NeP.ClassTable = {
 		}
 	},
 	{ -- Demon Hunter
-		Color_HEX = 'A330C9',
-		Color_RGB = {0.64,0.19,0.79},
+		hex = 'A330C9',
+		rgb = {0.64,0.19,0.79},
 		[577] = {
 			range = 'melee',
 			name = 'Havoc',

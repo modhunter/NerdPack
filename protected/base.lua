@@ -1,6 +1,5 @@
 local _, NeP = ...
 
-
 NeP.Protected.Cast = function(spell, target)
 end
 
@@ -16,7 +15,13 @@ end
 NeP.Protected.UseInvItem = function(name)
 end
 
+local rangeCheck = LibStub("LibRangeCheck-2.0")
 NeP.Protected.Distance = function (a, b)
+	if UnitExists(b) then
+		local minRange, maxRange = rangeCheck:GetRange(b)
+		return maxRange or minRange
+	end
+	return 0
 end
 
 NeP.Protected.Infront = function (a, b)
