@@ -10,9 +10,9 @@ local OM_c = {
 
 function NeP.OM:Garbage()
 	for tb in pairs(OM_c) do
-		for _, obj in pairs(OM_c[tb]) do
+		for GUID, obj in pairs(OM_c[tb]) do
 			if not UnitExists(obj.key) then
-				obj = nil
+				OM_c[tb][GUID] = nil
 			end
 		end 
 	end
@@ -31,10 +31,8 @@ function NeP.OM:Filter(ref, GUID)
 end
 
 function NeP.OM:Insert(ref, Obj)
-	-- Filter units
-	if self:Filter(ref, Obj) then return end
-	-- Add it
 	local GUID = UnitGUID(Obj) or '0'
+	if self:Filter(ref, GUID) then return end
 	local ObjID = select(6, strsplit('-', GUID))
 	local distance = NeP.Protected:Distance('player', Obj)
 	OM_c[ref][GUID] = {

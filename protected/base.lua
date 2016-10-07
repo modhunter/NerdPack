@@ -36,3 +36,20 @@ end
 
 NeP.Protected.LineOfSight = function (a, b)
 end
+
+-- Name Plate stuff
+local lnr = LibStub("AceAddon-3.0"):NewAddon("NerdPack", "LibNameplateRegistry-1.0")
+
+function lnr:OnEnable()
+	self:LNR_RegisterCallback("LNR_ON_NEW_PLATE")
+	self:LNR_RegisterCallback("LNR_ON_RECYCLE_PLATE")
+end
+
+function lnr:LNR_ON_NEW_PLATE(_, _, plateData)
+	local tK = plateData.unitToken
+	NeP.OM:Add(tK)
+end
+
+function lnr:LNR_ON_RECYCLE_PLATE()
+	NeP.OM:Garbage()
+end

@@ -8,6 +8,7 @@
 	<Script file="libs\LibRangeCheck-2.0\LibRangeCheck-2.0.lua" />
 	<Script file="libs\AceAddon-3.0\AceAddon-3.0.lua" />
 	<Script file="libs\LibDispellable-1.0\LibDispellable-1.0.lua" />
+	<Script file="libs\LibNameplateRegistry-1.0\LibNameplateRegistry-1.0.lua" />
 	
 	<!-- Core -->
 	<Script file="NerdPack.lua" />
