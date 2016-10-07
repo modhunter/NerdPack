@@ -11,7 +11,7 @@ local parent = NeP.Interface:BuildGUI({
 	height = 250,
 	title = 'ObjectManager GUI'
 })
---parent:Hide()
+parent:Hide()
 NeP.Interface:Add('ObjectManager', function() parent:Show() end)
 
 local dOM = 'Enemy'
@@ -21,7 +21,6 @@ local bt = {
 	DEAD = {a = 'TOPRIGHT', b = 'Dead'}
 }
 for k,v in pairs(bt) do
-	print(1)
 	bt[k] = DiesalGUI:Create("Button")
 	parent:AddChild(bt[k])
 	bt[k]:SetParent(parent.content)

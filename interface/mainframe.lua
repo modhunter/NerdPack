@@ -4,7 +4,8 @@ local logo = '|T'..NeP.Media..'logo.blp:10:10|t'
 NeP.Interface.MainFrame = NeP.Interface:BuildGUI({
 	width = 100,
 	height = 60,
-	title = logo..NeP.Color..n_name..' v:'..NeP.Version
+	title = logo..NeP.Color..n_name,
+	subtitle = 'v:'..NeP.Version
 })
 NeP.Interface.MainFrame:SetEventListener('OnClose', function(self)
 	NeP.Core:Print('To show '..n_name..' again execute: /run NeP:Show()')
