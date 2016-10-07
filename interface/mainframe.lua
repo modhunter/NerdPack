@@ -6,6 +6,9 @@ NeP.Interface.MainFrame = NeP.Interface:BuildGUI({
 	height = 60,
 	title = logo..NeP.Color..n_name..' v:'..NeP.Version
 })
+NeP.Interface.MainFrame:SetEventListener('OnClose', function(self)
+	NeP.Core:Print('To show '..n_name..' again execute: /run NeP:Show()')
+end)
 
 NeP.Globals.Show = function() NeP.Interface.MainFrame:Show() end
 NeP.Globals.Hide = function() NeP.Interface.MainFrame:Hide() end
