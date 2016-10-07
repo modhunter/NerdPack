@@ -2,20 +2,11 @@
 ..\FrameXML\UI.xsd">
 
 	<!-- external libs -->
-	<Script file="libs\LibStub.lua" />
-	<Script file="libs\LibBossIDs-1.0\LibBossIDs-1.0.lua" />
-	<Include file="libs\CallbackHandler-1.0\CallbackHandler-1.0.xml" />
-	<Script file="libs\LibRangeCheck-2.0\LibRangeCheck-2.0.lua" />
-	<Script file="libs\AceAddon-3.0\AceAddon-3.0.lua" />
-	<Script file="libs\LibDispellable-1.0\LibDispellable-1.0.lua" />
-	<Script file="libs\LibNameplateRegistry-1.0\LibNameplateRegistry-1.0.lua" />
+	<Include file="Libs\files.xml" />
 	
 	<!-- Core -->
 	<Script file="NerdPack.lua" />
-	<Script file="tables\class.lua" />
-	<Script file="tables\spells.lua" />
-	<Script file="tables\castable_mounts.lua" />
-	<Script file="tables\blacklisted_auras.lua" />
+	<include file="tables\files.xml" />
 	<Script file="system\core.lua" />
 	<Script file="system\tooltip.lua" />
 	<Script file="system\dsl.lua" />

@@ -44,6 +44,8 @@ local function CreateToggle(eval)
 	local pos = (ButtonsSize*tcount)+(tcount*ButtonsPadding)-(ButtonsSize+ButtonsPadding)
 	Toggles[eval.key] = CreateFrame("CheckButton", eval.key, mainframe.content)
 	local temp = Toggles[eval.key]
+	temp:SetFrameStrata("high")
+	temp:SetFrameLevel(1)
 	temp.key = eval.key
 	temp:SetPoint("LEFT", mainframe.content, pos, 0)
 	temp:SetSize(ButtonsSize, ButtonsSize)
@@ -71,8 +73,14 @@ function NeP.Interface:AddToggle(eval)
 end
 
 function NeP.Interface:RefreshToggles()
-	local Width = tcount*(ButtonsSize+ButtonsPadding)-ButtonsPadding
-	mainframe:SetSize(Width, ButtonsSize+24)
+	mainframe.settings.width = tcount*(ButtonsSize+ButtonsPadding)-ButtonsPadding
+	mainframe.settings.height = ButtonsSize+18
+	
+	mainframe.settings.minHeight = mainframe.settings.height
+	mainframe.settings.minWidth = mainframe.settings.width
+	mainframe.settings.maxHeight = mainframe.settings.height
+	mainframe.settings.maxWidth = mainframe.settings.width
+	mainframe:ApplySettings()
 end
 
 function NeP.Interface:ResetToggles()

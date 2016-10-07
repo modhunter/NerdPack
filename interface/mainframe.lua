@@ -2,13 +2,16 @@ local n_name, NeP = ...
 local logo = '|T'..NeP.Media..'logo.blp:10:10|t'
 
 NeP.Interface.MainFrame = NeP.Interface:BuildGUI({
-	color = {0,0,0,0.6},
-	size = {100, 0},
+	width = 100,
+	height = 60,
 	title = logo..NeP.Color..n_name..' v:'..NeP.Version
 })
 
-local menuFrame = CreateFrame("Frame", "ExampleMenuFrame", NeP.Interface.MainFrame, "UIDropDownMenuTemplate")
-menuFrame:SetPoint("BOTTOMLEFT", NeP.Interface.MainFrame, "BOTTOMLEFT", 0, 0)
+NeP.Globals.Show = function() NeP.Interface.MainFrame:Show() end
+NeP.Globals.Hide = function() NeP.Interface.MainFrame:Hide() end
+
+local menuFrame = CreateFrame("Frame", "ExampleMenuFrame", NeP.Interface.MainFrame.frame, "UIDropDownMenuTemplate")
+menuFrame:SetPoint("BOTTOMLEFT", NeP.Interface.MainFrame.frame, "BOTTOMLEFT", 0, 0)
 menuFrame:Hide()
 
 local DropMenu = {
