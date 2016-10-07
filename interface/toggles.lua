@@ -70,7 +70,7 @@ function NeP.Interface:AddToggle(eval)
 	else
 		CreateToggle(eval)
 	end
-	self:RefreshToggles()
+	NeP.Interface:RefreshToggles()
 end
 
 function NeP.Interface:RefreshToggles()
@@ -91,3 +91,5 @@ function NeP.Interface:ResetToggles()
 	end
 	self:DefaultToggles()
 end
+
+NeP.Globals.Interface.AddToggle = NeP.Interface.AddToggle

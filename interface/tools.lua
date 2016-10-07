@@ -3,6 +3,7 @@ NeP.Interface = {}
 NeP.Globals.Interface = {}
 
 local DiesalGUI = LibStub("DiesalGUI-1.0")
+local SharedMedia = LibStub("LibSharedMedia-3.0")
 
 function NeP.Interface:Header(element, parent, offset, table)
 	local tmp = DiesalGUI:Create("FontString")
@@ -137,7 +138,7 @@ function NeP.Interface:Spinner(element, parent, offset, table)
 		tmp_spin.settings.shiftStep = element.shiftStep
 	end
 	tmp_spin:ApplySettings()
-	tmp_spin:AddStyleSheet(NeP.spinnerStyleSheet)
+	tmp_spin:AddStyleSheet(NeP.UI.spinnerStyleSheet)
 	tmp_spin:SetEventListener('OnValueChanged', function(this, event, userInput, number)
 		if not userInput then return end
 		NeP.Config:Write(table.key, element.key, number)
@@ -193,7 +194,7 @@ function NeP.Interface:Checkspin(element, parent, offset, table)
 	tmp_spin:SetNumber(
 		NeP.Config:Read(table.key, element.key..'_spin', element.default_spin or 0)
 	)
-	tmp_spin:AddStyleSheet(NeP.spinnerStyleSheet)
+	tmp_spin:AddStyleSheet(NeP.UI.spinnerStyleSheet)
 	tmp_spin:ApplySettings()
 	tmp_spin:SetEventListener('OnValueChanged', function(this, event, userInput, number)
 		if not userInput then return end
@@ -288,7 +289,7 @@ function NeP.Interface:Button(element, parent, offset, table)
 	tmp:SetText(element.text)
 	tmp:SetWidth(element.width)
 	tmp:SetHeight(element.height)
-	tmp:AddStyleSheet(NeP.buttonStyleSheet)
+	tmp:AddStyleSheet(NeP.UI.buttonStyleSheet)
 	tmp:SetEventListener("OnClick", element.callback)
 	if element.desc then
 		local tmp_desc = DiesalGUI:Create("FontString")
@@ -449,6 +450,7 @@ function NeP.Interface:BuildGUI(eval)
 		window:SetAllPoints(parent.content)
 		window.parent = parent
 		window.elements = { }
+		eval.window = window
 		self:BuildElements(eval, window)
 	end
 	return parent
