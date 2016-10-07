@@ -15,7 +15,6 @@ function NeP.Core:ClassColor(unit, type)
 	if UnitExists(unit) then
 		local classid  = select(3, UnitClass(unit))
 		if classid then
-			print(classid)
 			return NeP.ClassTable[classid][type:lower()]
 		end
 	end
