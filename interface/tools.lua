@@ -413,13 +413,24 @@ function NeP.Interface:BuildElements(table, parent)
 end
 
 function NeP.Interface:BuildGUI(eval)
+	if not eval.key then return end
 	local parent = DiesalGUI:Create('Window')
 	parent:SetWidth(eval.width or 200)
 	parent:SetHeight(eval.height or 300)
 	parent.frame:SetClampedToScreen(true)
+	parent:SetEventListener('OnDragStop', function(self, event, left, top)
+		NeP.Config:Write(eval.key, 'Location', {left, top})
+	end)
+	local left, top = unpack(NeP.Config:Read(eval.key, 'Location', {false, false}))
+	if left and top then
+		parent.settings.left = left
+		parent.settings.top = top
+		parent:UpdatePosition()
+	end
 
 	if not eval.color then eval.color = "ee2200" end
 	if type(eval.color) == 'function' then eval.color = eval.color() end
+	NeP.UI.spinnerStyleSheet['bar-background']['color'] = eval.color
 
 	if eval.title then
 		parent:SetTitle("|cff"..eval.color..eval.title.."|r", eval.subtitle)

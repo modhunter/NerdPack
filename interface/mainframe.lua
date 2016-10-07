@@ -2,6 +2,7 @@ local n_name, NeP = ...
 local logo = '|T'..NeP.Media..'logo.blp:10:10|t'
 
 NeP.Interface.MainFrame = NeP.Interface:BuildGUI({
+	key = 'NePMFrame',
 	width = 100,
 	height = 60,
 	title = logo..NeP.Color..n_name,

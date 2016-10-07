@@ -7,6 +7,7 @@ local statusBars = {}
 local statusBarsUsed = {}
 
 local parent = NeP.Interface:BuildGUI({
+	key = 'NePOMgui',
 	width = 500,
 	height = 250,
 	title = 'ObjectManager GUI'
