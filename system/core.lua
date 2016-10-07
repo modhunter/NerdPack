@@ -21,3 +21,5 @@ function NeP.Core:ClassColor(unit, type)
 	end
 	return d_color[type:lower()]
 end
+
+NeP.Color = NeP.Core:ClassColor('player', 'hex')
