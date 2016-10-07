@@ -412,9 +412,16 @@ function NeP.Interface:BuildElements(table, parent)
 	end
 end
 
+-- So people wont create the same GUI over and over
+local usedGUIs = {}
+
 function NeP.Interface:BuildGUI(eval)
+	if usedGUIs[eval] then
+		usedGUIs[eval]()
+	end
 	if not eval.key then return end
 	local parent = DiesalGUI:Create('Window')
+	usedGUIs[eval.key] = function() print('hit') parent:Show() end
 	parent:SetWidth(eval.width or 200)
 	parent:SetHeight(eval.height or 300)
 	parent.frame:SetClampedToScreen(true)
@@ -429,28 +436,26 @@ function NeP.Interface:BuildGUI(eval)
 			parent:UpdatePosition()
 		end
 	end)
-
-	if not eval.color then eval.color = "ee2200" end
+	if not eval.color then eval.color = NeP.Color end
 	if type(eval.color) == 'function' then eval.color = eval.color() end
 	NeP.UI.spinnerStyleSheet['bar-background']['color'] = eval.color
-
 	if eval.title then
 		parent:SetTitle("|cff"..eval.color..eval.title.."|r", eval.subtitle)
 	end
-
 	if eval.config then
 		local window = DiesalGUI:Create('ScrollFrame')
 		parent:AddChild(window)
 		window:SetParent(parent.content)
 		window:SetAllPoints(parent.content)
 		window.parent = parent
-		config.window = window
 		window.elements = { }
 		self:BuildElements(eval, window)
 	end
-
 	return parent
 end
 
 -- Gobals
-NeP.Globals.Interface.BuildGUI = NeP.Interface.BuildGUI
+NeP.Globals.Interface = {
+	BuildGUI = NeP.Interface.BuildGUI,
+	Fetch = NeP.Config.Read
+}

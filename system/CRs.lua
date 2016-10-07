@@ -6,7 +6,19 @@ NeP.CR.CR = {}
 local CRs = {}
 local UnitClass = UnitClass
 
-function NeP.CR:Add(SpecID, Name, InCombat, OutCombat, ExeOnLoad)
+function NeP.CR:AddGUI(key, eval)
+	local temp = {
+		title = key,
+		key = key,
+		width = 200,
+		height = 300,
+		config = eval
+	}
+	NeP.Interface:BuildGUI(temp):Hide()
+	NeP.Interface:AddCR_ST(key)
+end
+
+function NeP.CR:Add(SpecID, Name, InCombat, OutCombat, ExeOnLoad, GUI)
 	local classIndex = select(3, UnitClass('player'))
 	if NeP.ClassTable[classIndex][SpecID] or classIndex == SpecID then
 		if not CRs[SpecID] then
@@ -16,6 +28,9 @@ function NeP.CR:Add(SpecID, Name, InCombat, OutCombat, ExeOnLoad)
 		-- This compiles the CR
 		NeP.Compiler:Iterate(InCombat)
 		NeP.Compiler:Iterate(OutCombat)
+
+		--Create user GUI
+		if GUI then NeP.CR:AddGUI(Name, GUI) end
 
 		CRs[SpecID][Name] = {}
 		CRs[SpecID][Name].Exe = ExeOnLoad
@@ -53,6 +68,7 @@ function NeP.CR:GetList(Spec)
 	return result
 end
 
---Global
-NeP.Globals.CR = {}
-NeP.Globals.CR.Add = NeP.CR.Add
+--Globals
+NeP.Globals.CR = {
+	Add = NeP.CR.Add
+}

@@ -5,7 +5,7 @@ NeP.Interface.MainFrame = NeP.Interface:BuildGUI({
 	key = 'NePMFrame',
 	width = 100,
 	height = 60,
-	title = logo..NeP.Color..n_name,
+	title = logo..n_name,
 	subtitle = 'v:'..NeP.Version
 })
 NeP.Interface.MainFrame:SetEventListener('OnClose', function(self)
@@ -21,11 +21,22 @@ menuFrame:Hide()
 
 local DropMenu = {
 	{text = logo..'['..n_name..' |rv:'..NeP.Version..']', isTitle = 1, notCheckable = 1},
-	{text = "Combat Routines:", hasArrow = true, menuList = {}}
+	{text = "Combat Routines:", hasArrow = true, menuList = {}},
+	{text = "Combat Routines Settings:", hasArrow = true, menuList = {}}
 }
 
 function NeP.Interface:ResetCRs()
 	DropMenu[2].menuList = {}
+end
+
+function NeP.Interface:AddCR_ST(Name)
+	table.insert(DropMenu[3].menuList, {
+		text = Name,
+		notCheckable = 1,
+		func = function()
+			self:BuildGUI(Name)
+		end
+	})
 end
 
 function NeP.Interface:AddCR(Spec, Name, checked)
