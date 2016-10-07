@@ -384,7 +384,7 @@ local _Elements = {
 	dropdown = 	{ func = 'Combo', offset = -20 },
 	button = 	{ func = 'Button', offset = -20 },
 	input = 	{ func = 'Input', offset = -16 },
-	spacer = 	{ func = 'Noop', offset = 10 },
+	spacer = 	{ func = 'Noop', offset = -10 },
 }
 
 function NeP.Interface:BuildElements(table, parent)
@@ -419,6 +419,7 @@ local usedGUIs = {}
 function NeP.Interface:BuildGUI(eval)
 	if usedGUIs[eval] then
 		usedGUIs[eval]()
+		return
 	end
 	if not eval.key then return end
 	local parent = DiesalGUI:Create('Window')
