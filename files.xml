@@ -8,6 +8,7 @@
 	<Script file="NerdPack.lua" />
 	<include file="tables\files.xml" />
 	<Script file="system\core.lua" />
+	<Script file="system\commands.lua" />
 	<Script file="system\tooltip.lua" />
 	<Script file="system\dsl.lua" />
 	<Script file="system\conditions.lua" />
@@ -23,5 +24,6 @@
 	<Include file="rotations\files.xml" />
 	<Include file="protected\files.xml" />
 	<Script file="system\om.lua" />
+	<Script file="commands.lua" />
 
 </Ui>
