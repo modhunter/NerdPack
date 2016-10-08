@@ -3,7 +3,7 @@ local _, NeP = ...
 NeP.Core = {}
 
 function NeP.Core:Print(text)
-	print('['..NeP.Color..'NeP|r]: '..tostring(text))
+	print('[|cff'..NeP.Color..'NeP|r]: '..tostring(text))
 end
 
 local d_color = {
