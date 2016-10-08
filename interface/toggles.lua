@@ -23,7 +23,7 @@ end
 local function OnClick(self, func, button)
 	if button == 'LeftButton' then
 		self.actv = not self.actv
-		NeP.Config:Write('TOGGLE_STATES', self.key:lower(), self.actv)
+		NeP.Config:Write('TOGGLE_STATES', self.key, self.actv)
 	end
 	if func then
 		func(self, button)
@@ -47,7 +47,7 @@ local function CreateToggle(eval)
 	local temp = Toggles[eval.key]
 	temp:SetFrameStrata("high")
 	temp:SetFrameLevel(1)
-	temp.key = eval.key
+	temp.key = eval.key:lower()
 	temp:SetPoint("LEFT", mainframe.content, pos, 0)
 	temp:SetSize(ButtonsSize, ButtonsSize)
 	temp:SetFrameLevel(1)
@@ -92,4 +92,14 @@ function NeP.Interface:ResetToggles()
 	self:DefaultToggles()
 end
 
+function NeP.Interface:toggleToggle(key, state)
+	local self = Toggles[key:lower()]
+	if not self then return end
+	self.actv = state or not self.actv
+	self:SetChecked(self.actv)
+	NeP.Config:Write('TOGGLE_STATES', self.key, self.actv)
+end
+
+-- Globals
+NeP.Globals.Interface.toggleToggle = NeP.Interface.toggleToggle
 NeP.Globals.Interface.AddToggle = NeP.Interface.AddToggle
