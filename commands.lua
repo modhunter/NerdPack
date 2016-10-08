@@ -6,7 +6,7 @@ local L = {
 	aoe            = function(state) T(self,'AoE', state) end,
 	cooldowns      = function(state) T(self,'Cooldowns', state) end,
 	interrupts     = function(state) T(self,'Interrupts', state) end,
-    version        = function() NeP.Core:Print(NeP.Version) end
+    version        = function() NeP.Core:Print(NeP.Version) end,
     show = NeP.Show,
 	hide = function()
 		NeP:Hide()
@@ -14,14 +14,14 @@ local L = {
 	end,
 }
 
-mt = L.mastertoggle
-toggle = L.mastertoggle
-tg = L.mastertoggle
-ver = L.version
+L.mt = L.mastertoggle
+L.toggle = L.mastertoggle
+L.tg = L.mastertoggle
+L.ver = L.version
 
 NeP.Commands:Register('NeP', function(msg)
 	local command, rest = msg:match("^(%S*)%s*(.-)$");
 	command, rest = tostring(command):lower(), tostring(rest):lower()
 	rest = rest == 'on' or false
-	if NCMDTable[command] then L[command](rest) end
+	if L[command] then L[command](rest) end
 end, 'nep', 'nerdpack')

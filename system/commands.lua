@@ -14,6 +14,6 @@ function NeP.Commands:Register(name, func, ...)
 	end
 end
 
-NeP.Globlas.Commands = {
+NeP.Globals.Commands = {
 	Register = NeP.Commands.Register
 }
