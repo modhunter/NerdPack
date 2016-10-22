@@ -161,7 +161,7 @@ end)
 NeP.DSL:Register('gcd', function()
 	local class = select(3,UnitClass("player"))
 	-- Some class's always have GCD = 1
-	if class == 4 or (class == 11 and GetShapeshiftForm()== 2) then
+	if class == 4 or (class == 11 and GetShapeshiftForm() == 2) or (class == 10 and GetSpecialization() ~= 2) then
 		return 1
 	end
 	return math.floor((1.5 / ((GetHaste() / 100) + 1)) * 10^3 ) / 10^3
