@@ -41,6 +41,7 @@ function NeP.Tooltip:Unit(target, pattern)
 	frame:SetOwner(UIParent, 'ANCHOR_NONE')
 	frame:SetUnit(target)
 	local tooltipText = _G["NeP_ScanningTooltipTextLeft2"]:GetText()
+	if pPattern(UnitName(target):lower(), pattern) then return true end
 	return tooltipText and pPattern(tooltipText, pattern)
 end
 
